@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Catch Mind!</title>
+
+    <link rel="stylesheet" type="text/css" href="./stylesheets/waitingRoomStyle.css">
+    <meta charset="utf-8">
+    <title>Catch Mind!</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="./stylesheets/gameRoomStyle.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./javascripts/gameRoomScript.js"></script>
+    <script type="text/javascript" src="./javascripts/waitingRoomScript.js"></script>
+    <script type="text/javascript" src="./javascripts/title.js"></script>
+    <script type="text/javascript" src="./javascripts/canvas.js"></script>
+    <script src="./socket.io/socket.io.js"></script>
+
+</head>
+<body>
+
+<div class = "container">
+    <div id = "left-section">
+        <button class = "btn" id = "btn-start" disabled="disabled">게임시작</button>
+        <div class = "users">
+            <div class="user" id="user1">
+                <div class="speech_bubble_left" id="bubble1"></div>
+
+            </div>
+
+            <div class="user" id="user3">
+                <div class="speech_bubble_left" id="bubble3"></div>
+
+            </div>
+            <div class="user" id="user5">
+                <div class="speech_bubble_left" id="bubble5"></div>
+
+            </div>
+            <div class="user" id="user7">
+                <div class="speech_bubble_left" id="bubble7"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id = "right-section">
+        <button class = "btn" id = "btn_exit">나가기</button>
+
+        <div class = "users">
+
+            <div class="user" id="user2">
+                <div class="speech_bubble_right" id="bubble2"></div>
+
+            </div>
+            <div class="user" id="user4">
+                <div class="speech_bubble_right" id="bubble4"></div>
+
+            </div>
+            <div class="user" id="user6">
+                <div class="speech_bubble_right" id="bubble6"></div>
+
+            </div>
+            <div class="user" id="user8">
+                <div class="speech_bubble_right" id="bubble8"></div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <div id = "contents">
+
+        <div id = "title">
+            <div id="word"></div>
+            <img id = "Pic-titlelogo" src = "./images/title.png" alt = "캐치 마인드!">
+        </div>
+
+        <div id ="sketch-canvas">
+            <img id = "Pic-sketchbook" src = "./images/sketchbook.gif" alt = "이미지를 불러올 수 없습니다.">
+            <canvas id = "canvas" width = "605" height = "415"></canvas>
+        </div>
+
+        <div id = "tools">
+            <button class = "btn" id = "btn-reset">reset</button>
+            <button class = "btn" id = "btn-undo" disabled="disabled">undo</button>
+            <label>Brush Size:</label>
+            <input name="brush" id="brush_size" type="range" value="5" min="1" max="100"/>
+
+
+            <div id = "color-table">
+                <ul id="colors">
+                    <li style="background-color:black;"> </li>
+                    <li style="background-color:white;"> </li>
+                    <li style="background-color:red;"> </li>
+                    <li style="background-color:brown;"> </li>
+                    <li style="background-color:orange;"> </li>
+                    <li style="background-color:yellow"> </li>
+                    <li style="background-color:sandybrown"> </li>
+                    <li style="background-color:midnightblue"> </li>
+                    <li style="background-color:#ff00ff;"> </li>
+                    <li style="background-color:#0099FF;"> </li>
+                    <li style="background-color:blue"> </li>
+                    <li style="background-color:darkorchid"> </li>
+                    <li style="background-color:#82B82C;"> </li>
+                    <li style="background-color:green;"> </li>
+                    <li style="background-color:gray"> </li>
+                </ul>
+
+            </div>
+        </div>
+
+        <div id = "chatting">
+            <label>chatting:  </label><input maxlength='63' id="chattingbox" type="text" />
+            <input class = "btn" id = "btn-send" type="submit" value="send" />
+        </div>
+    </div>
+
+</div>
+
+</body>
+<script>
+    var serverURL = 'http://localhost:3000';
+    var ongame = false;
+    var name = '<%= user %>';
+    var room = '<%= room %>';
+    var roommax = '<%= roommax %>';
+
+    $(document).ready(function() {
+
+        var socket = io.connect(serverURL);
+
+        socket.emit('joinroom',{room:'<%=room%>',userid: name});
+
+        socket.on('userlist',function(data) {
+            var users = data.users;
+            initUser();
+            for (var i = 0; i < users.length; i++) {
+                createUser(users[i].position, users[i].id);
+            }
+            for (var i = 0; i < users.length; i++) {
+                if(users[i].host == true){
+                    $('#user' + users[i].position + ' .userPic .Pic-anonymous').attr('src','./images/user-host.png');
+                    if(users.length>1){
+                        $('#btn-start').removeAttr('disabled');
+                        $('#word').css('display','block');
+                    }
+                }
+            }
+        });
+
+        socket.on('toClientImg',function(data){
+            var img = new Image();
+            $(img).load(function () {
+                var context = document.getElementById("canvas").getContext("2d");
+                context.drawImage(img, 0, 0);
+            });
+            img.src = data.imgData;
+        });
+
+        $('#btn_exit').click(function(){
+
+            if(ongame == false) {
+
+                $.ajax({
+                    type: 'post',
+                    dataType: 'json',
+                    url: '/gameRoom/exitRoom',
+                    data: {roomnum: room},
+                    success: function (data) {
+                        if (data.result == true) {
+                            window.location.href = '/waitingRoom';
+                            socket.emit('disconnect1', {room: room, id:name});
+                        }
+                        else {
+                            alert("오류");
+                        }
+                    },
+                    error: function (data, status, err) {
+                    }
+                });
+            }else{
+                alert("게임중엔 방을 나갈 수 없습니다.");
+            }
+        });
+
+
+        socket.on('toClient', function(data) {
+            writeMessage(data.msg,data.position);
+        });
+
+        $("#chattingbox").keyup(function(event) {
+            if (event.which == 13) {
+                var msg = $('#chattingbox').val();
+                $('#chattingbox').val("");
+                send(msg);
+            }
+        });
+
+        $('#btn-send').click(function() {
+            var msg = $('#chattingbox').val();
+            $('#chattingbox').val("");
+            send(msg);
+        });
+
+        function send(msg){
+            socket.emit('toServer', {message : msg, room:room, id:name});
+        }
+
+        function writeMessage(msg, pos) {
+
+            var bubble_id="#bubble"+ pos;
+            $(bubble_id).html("");
+            $(bubble_id).html(msg);
+            $(bubble_id).css('display','block');
+            setTimeout(function(){
+                $(bubble_id).css('display','none');
+            }, 3000);
+        }
+
+
+        function createUser(position, id){
+            var user = "#user"+position;
+
+            var div1 = $('<div class = "userID">'+id+'</div>');
+            var div2 = $('<div class = "userPic"></div>');
+            var img1 = $('<img class = "Pic-anonymous" src="./images/user.png">');
+            var label1 = $("<label></label>");
+
+            div1 = div1.append(label1);
+            div2 = div2.append(img1);
+            $(user).append(div1).append(div2);
+        }
+
+        function initUser(){
+            for(var i=1;i<9;i++){
+                $('#user'+i).html('<div class="speech_bubble_left" id="bubble1"></div>');
+            }
+        }
+
+
+    });
+
+    $('#btn-start').click(function(){
+        if(ongame == false){
+            ongame = true;
+            $(this).attr('disabled', 'disabled');
+        }
+    });
+</script>
+
+</html>

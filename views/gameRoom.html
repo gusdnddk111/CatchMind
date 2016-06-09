@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Catch Mind!</title>
+
+	<link rel="stylesheet" type="text/css" href="./stylesheets/gameRoomStyle.css">
+	<script src="/socket.io/socket.io.js"></script>
+	<script type="text/javascript" src="./javascripts/canvas.js"></script>
+
+</head>
+<body>
+
+
+<div class = "container">
+	<div id = "left-section">
+		<button class = "btn" id = "btn-ready" disabled="disabled">게임시작</button>
+		<div class = "users">
+			<div class="user" id="user1">
+				<div class="speech_bubble_left" id="bubble1"></div>
+
+			</div>
+
+			<div class="user" id="user3">
+				<div class="speech_bubble_left" id="bubble3"></div>
+
+			</div>
+			<div class="user" id="user5">
+				<div class="speech_bubble_left" id="bubble5"></div>
+
+			</div>
+			<div class="user" id="user7">
+				<div class="speech_bubble_left" id="bubble7"></div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<div id = "right-section">
+		<button class = "btn" id = "btn_exit">나가기</button>
+
+		<div class = "users">
+
+			<div class="user" id="user2">
+				<div class="speech_bubble_right" id="bubble2"></div>
+
+			</div>
+			<div class="user" id="user4">
+				<div class="speech_bubble_right" id="bubble4"></div>
+
+			</div>
+			<div class="user" id="user6">
+				<div class="speech_bubble_right" id="bubble6"></div>
+
+			</div>
+			<div class="user" id="user8">
+				<div class="speech_bubble_right" id="bubble8"></div>
+
+			</div>
+
+		</div>
+	</div>
+
+
+	<div id = "contents">
+	
+		<div id = "title">
+			<div id="word"></div>
+			<img id = "Pic-titlelogo" src = "./images/title.png" alt = "캐치 마인드!">
+		</div>
+
+		<div id ="sketch-canvas">
+			<img id = "Pic-sketchbook" src = "./images/sketchbook.gif" alt = "이미지를 불러올 수 없습니다.">
+			<canvas id = "canvas" width = "605" height = "415"></canvas>
+		</div>
+
+		<div id = "tools">
+				<button class = "btn" id = "btn-reset">reset</button>
+				<button class = "btn" id = "btn-undo" disabled="disabled">undo</button>
+				<label>Brush Size:</label>
+				<input name="brush" id="brush_size" type="range" value="5" min="1" max="100"/>
+
+
+			<div id = "color-table">
+				<ul id="colors">
+					<li style="background-color:black;"> </li>
+					<li style="background-color:white;"> </li>
+					<li style="background-color:red;"> </li>
+					<li style="background-color:brown;"> </li>
+					<li style="background-color:orange;"> </li>
+					<li style="background-color:yellow"> </li>
+					<li style="background-color:sandybrown"> </li>
+					<li style="background-color:midnightblue"> </li>
+					<li style="background-color:#ff00ff;"> </li>
+					<li style="background-color:#0099FF;"> </li>
+					<li style="background-color:blue"> </li>
+					<li style="background-color:darkorchid"> </li>
+					<li style="background-color:#82B82C;"> </li>
+					<li style="background-color:green;"> </li>
+					<li style="background-color:gray"> </li>
+				</ul>
+	
+			</div>
+		</div>
+
+		<div id = "chatting">
+			<label>chatting:  </label><input id="chattingbox" type="text" />
+			<input class = "btn" id = "btn-send" type="submit" value="send" />
+		</div>
+	</div>
+
+</div>
+
+</body>
+<script>
+$(document).ready(function(){
+
+});
+
+
+</script>
+
+</html>
