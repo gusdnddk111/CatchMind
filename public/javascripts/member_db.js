@@ -10,8 +10,8 @@ var connection = mysql.createConnection({
         host     : 'us-cdbr-iron-east-04.cleardb.net',
         user     : 'baecb20311ffc0',
         password : '06a3e36784d4d6f',
-        database : 'heroku_b9321d6b1f34f5f'
-
+        database : 'heroku_b9321d6b1f34f5f',
+        port     : 3306
 });
 
 var self = module.exports = {
