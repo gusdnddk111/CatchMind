@@ -24,9 +24,7 @@ var self = module.exports = {
                 callback(false);
             }
             else {
-                console(_rows.length());
-                console(_rows.length);
-                for (var i = 0; i < _rows.length(); ++i) {
+                for (var i = 0; i < _rows.length; ++i) {
                     if (id == _rows[i].NAME) {
                         callback(_rows[i]);
                     }
@@ -42,15 +40,15 @@ var self = module.exports = {
 
             if (error) {
                 console.log("ERROR : " + error);
-                callback(true);
+                return callback("error");
             }
 
             for (var i = 0; i < _rows.length; ++i) {
                 if (id == _rows[i].NAME) {
-                    callback(true);
+                    return callback(true);
                 }
             }
-            callback(false);
+            return callback(false);
         });
     },
 
@@ -59,7 +57,11 @@ var self = module.exports = {
         self.overlap(member.id,function(result){
             if(result){
                 console.log("member_db:ID is already exist");
-                callback("overlap");
+                return callback("overlap");
+            }
+            else if(result == "error"){
+                console.log("member_db: error");
+                return callback(false);
             }
             else{
                 var data = [member.id, member.password,"off"];
@@ -67,11 +69,11 @@ var self = module.exports = {
                 connection.query("INSERT INTO info(NAME, PASSWORD,LOGON) VALUES (?,?,?)", data, function (err) {
                     if (!err) {
                         console.log("member_db:add success");
-                        callback(true);
+                        return callback(true);
                     }
                     else {
                         console.log("member_db:add fail");
-                        callback(false);
+                        return callback(false);
                     }
                 });
             }
