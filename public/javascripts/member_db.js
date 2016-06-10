@@ -24,6 +24,8 @@ var self = module.exports = {
                 callback(false);
             }
             else {
+                console(_rows.length());
+                console(_rows.length);
                 for (var i = 0; i < _rows.length(); ++i) {
                     if (id == _rows[i].NAME) {
                         callback(_rows[i]);
