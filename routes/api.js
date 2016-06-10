@@ -16,7 +16,6 @@ module.exports = function(app){
         login.login(req,res);
     });
     
-    
     app.post('/waitingRoom/editRoom',function(req,res){
         room_db.addRoom(req.body,res);
     });

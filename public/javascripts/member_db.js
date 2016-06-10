@@ -77,6 +77,7 @@ var self = module.exports = {
     },
 
     login: function (req,callback) {
+        
         self.check(req.id, function(member){
             if(member){
                 if(req.password == member.PASSWORD){
