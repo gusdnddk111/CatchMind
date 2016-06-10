@@ -1,11 +1,7 @@
 
 $(document).ready(function(){
-
     
     var roomnum="";
-    
-
-  
 
     /*for(var i=1;i<5;i++){
      var temp_str1="#bubble"+i;

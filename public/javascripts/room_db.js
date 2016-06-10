@@ -5,21 +5,13 @@ var mysql = require('mysql');
 var express = require('express');
 
 var connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'root',
-    password : '784001',
-    database : 'userinfo'
-});
-
-
-
-connection.connect(function(err){
-    if(err){
-        console.error("mysql connection error");
-        console.log(err);
-        throw err;
-    }
-});
+            host     : 'us-cdbr-iron-east-04.cleardb.net',
+            user     : 'baecb20311ffc0',
+            password : '06a3e36784d4d6f',
+            database : 'heroku_b9321d6b1f34f5f'
+            //socketPath: '/Applications/MAMP/tmp/mysql/mysql.sock',
+            //port     : 3306
+    });
 
 module.exports = {
 
@@ -86,6 +78,9 @@ module.exports = {
 
         connection.query('SELECT * FROM roominfo', [], function (error, _rows, _cols) {
             if (error) {
+                if(_rows.length==0){
+                    return callback(_rows);
+                }
                 console.log("ERROR : " + error);
                 return callback(false);
             }

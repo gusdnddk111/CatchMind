@@ -1,24 +1,17 @@
+
 var fs = require('fs');
 var ejs = require('ejs');
 var http = require('http');
 var mysql = require('mysql');
 var express = require('express');
 
+
 var connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'root',
-    password : '784001',
-    database : 'userinfo'
-});
+        host     : 'us-cdbr-iron-east-04.cleardb.net',
+        user     : 'baecb20311ffc0',
+        password : '06a3e36784d4d6f',
+        database : 'heroku_b9321d6b1f34f5f'
 
-
-
-connection.connect(function(err){
-    if(err){
-        console.error("mysql connection error");
-        console.log(err);
-        throw err;
-    }
 });
 
 var self = module.exports = {
@@ -48,7 +41,6 @@ var self = module.exports = {
             if (error) {
                 console.log("ERROR : " + error);
                 callback(true);
-
             }
 
             for (var i = 0; i < _rows.length; ++i) {
