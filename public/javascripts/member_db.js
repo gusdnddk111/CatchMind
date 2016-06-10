@@ -24,7 +24,7 @@ var self = module.exports = {
                 callback(false);
             }
             else {
-                for (var i = 0; i < _rows.length; ++i) {
+                for (var i = 0; i < _rows.length(); ++i) {
                     if (id == _rows[i].NAME) {
                         callback(_rows[i]);
                     }
@@ -77,7 +77,6 @@ var self = module.exports = {
     },
 
     login: function (req,callback) {
-        
         self.check(req.id, function(member){
             if(member){
                 if(req.password == member.PASSWORD){
