@@ -1,7 +1,6 @@
 var signup = require('../public/javascripts/signup.js');
 var login = require('../public/javascripts/login.js');
 var member_db = require('../public/javascripts/member_db.js');
-var room_db = require('../public/javascripts/room_db.js');
 var express = require('express');
 
 var app = express();
@@ -17,15 +16,15 @@ module.exports = function(app){
     });
     
     app.post('/waitingRoom/editRoom',function(req,res){
-        room_db.addRoom(req.body,res);
+        member_db.addRoom(req.body,res);
     });
 
     app.post('/waitingRoom/enterRoom',function(req,res){
-        room_db.updateRoomInfo(req.body,res);
+        member_db.updateRoomInfo(req.body,res);
     });
 
     app.post('/gameRoom/exitRoom',function(req,res){
-        room_db.exitRoom(req.body,res);
+        member_db.exitRoom(req.body,res);
     });
     
 };

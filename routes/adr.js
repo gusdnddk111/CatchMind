@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var room_db = require('../public/javascripts/room_db.js');
+var room_db = require('../public/javascripts/member_db.js');
 
 
 module.exports = router;
