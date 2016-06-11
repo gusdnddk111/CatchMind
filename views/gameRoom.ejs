@@ -129,7 +129,6 @@
     var ongame = false;
     var name = '<%= user %>';
     var room = '<%= room %>';
-    var roommax = '<%= roommax %>';
 
     $(document).ready(function() {
 
@@ -173,23 +172,6 @@
 
             if(ongame == false) {
                 socket.emit('disconnect1', {room: room, id:name});
-                /*$.ajax({
-                    type: 'post',
-                    dataType: 'json',
-                    url: '/gameRoom/exitRoom',
-                    data: {roomnum: room},
-                    success: function (data) {
-                        if (data.result == true) {
-                            window.location.href = '/waitingRoom';
-
-                        }
-                        else {
-                            alert("오류");
-                        }
-                    },
-                    error: function (data, status, err) {
-                    }
-                });*/
             }else{
                 alert("게임중엔 방을 나갈 수 없습니다.");
             }

@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var room_db = require('../public/javascripts/member_db.js');
 
 /* GET users listing. */
 router.get('/waitingRoom', function(req, res, next) {
@@ -12,7 +11,7 @@ router.get('/title', function(req, res, next) {
 });
 
 router.get('/gameRoom:room',function(req,res){
-            res.render('gameRoom.ejs',{room:req.params.room, user:req.session.userid, roommax:result.roominfo[0].maxusercount});
+    res.render('gameRoom.ejs',{room:req.params.room, user:req.session.userid);
 });
 
 module.exports = router;
