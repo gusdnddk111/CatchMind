@@ -12,7 +12,7 @@ module.exports = {
                 return res.json({result: 'success', user: result.user});
             }
             else{
-                return res.json({result: 'fail'});
+                return res.json({result: 'login_fail'});
             }
         });
     }

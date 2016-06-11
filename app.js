@@ -71,31 +71,32 @@ server.listen(3000);
 
 var io = require('socket.io').listen(server);
 
+var roomnum=0;
 var rooms = [];
-var count=0;
 
 io.sockets.on('connection', function (socket) {
   console.log("socket connected!");
 
+  socket.on("joinWaitingRoom",function(){
+    socket.join('waitingRoom');
+    io.sockets.in('waitingRoom').emit("room",{rooms:rooms});
+  });
+
   socket.on('joinroom',function(data) {
     var room = data.room;
     var name = data.userid;
+    
+    if (rooms[room].count == 8) {rooms[room].count = 1;}
+    else {rooms[room].count += 1;}
 
-    // Create Room
-    if (rooms[room] == undefined) {
-      count = 1;
-      var obj={id:name, position:count, host:true};
-      console.log('room create :' + room);
-      rooms[room] = new Object();
-      rooms[room].users=[];
-      rooms[room].users.push(obj);
+    if(rooms[room].roominfo.currentcount==1){
+      var obj={id:name, position:rooms[room].count, host:true};
     }
     else{
-      var obj={id:name, position:count, host:false};
-      rooms[room].users.push(obj);
+      var obj={id:name, position:rooms[room].count, host:false};
     }
-    if (count == 8) {count = 1;}
-    else {count++;}
+
+    rooms[room].users.push(obj);
     
     socket.join(room);
     console.log(room+"번 방에 "+ rooms[room].users[rooms[room].users.length-1].id +" 입장");
@@ -125,13 +126,43 @@ io.sockets.on('connection', function (socket) {
           break;
         }
       }
-    console.log(rooms[room].users);
-    io.sockets.in(room).emit('userlist', {users: rooms[room].users});
+    
+    rooms[room].roominfo.currentcount -= 1;
+    
+    if(rooms[room].roominfo.currentcount == 0){
+      delete rooms[room];
+    }
+    else{
+      io.sockets.in(room).emit('userlist', {users: rooms[room].users});
+    }
+
+    io.sockets.in('waitingRoom').emit("room",{rooms:rooms});
+    
   });
   
   socket.on('toServerImg',function(data){
     io.sockets.in(data.room).emit('toClientImg',{imgData:data.img});
-  })
+  });
+
+  socket.on('createRoomToServer',function(data){
+    roomnum++;
+    
+    console.log('room create :' + roomnum +"번 방");
+    rooms[roomnum] = new Object();
+    rooms[roomnum].users=[];
+    rooms[roomnum].count=0;
+    rooms[roomnum].roominfo={roomnum:roomnum, roomname:data.roomname, currentcount:1, maxcount:data.maxcount};
+    console.log(rooms[roomnum].roominfo);
+    io.sockets.in('waitingRoom').emit("room",{rooms:rooms});
+    io.sockets.connected[socket.id].emit('roomenter',{roomnum:roomnum});
+  });
+  
+  socket.on('enterroom',function(data){
+    rooms[data.roomnum].roominfo.currentcount += 1;
+    console.log(rooms[data.roomnum].roominfo.currentcount);
+    io.sockets.in('waitingRoom').emit("room",{rooms:rooms});
+    io.sockets.connected[socket.id].emit('roomenter',{roomnum:roomnum});
+  });
 });
 
   module.exports = app;

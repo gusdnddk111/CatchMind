@@ -148,7 +148,6 @@
                     $('#user' + users[i].position + ' .userPic .Pic-anonymous').attr('src','./images/user-host.png');
                     if(users.length>1){
                         $('#btn-start').removeAttr('disabled');
-                        $('#word').css('display','block');
                     }
                 }
             }
@@ -166,8 +165,8 @@
         $('#btn_exit').click(function(){
 
             if(ongame == false) {
-
-                $.ajax({
+                socket.emit('disconnect1', {room: room, id:name});
+                /*$.ajax({
                     type: 'post',
                     dataType: 'json',
                     url: '/gameRoom/exitRoom',
@@ -175,7 +174,7 @@
                     success: function (data) {
                         if (data.result == true) {
                             window.location.href = '/waitingRoom';
-                            socket.emit('disconnect1', {room: room, id:name});
+
                         }
                         else {
                             alert("오류");
@@ -183,7 +182,7 @@
                     },
                     error: function (data, status, err) {
                     }
-                });
+                });*/
             }else{
                 alert("게임중엔 방을 나갈 수 없습니다.");
             }
