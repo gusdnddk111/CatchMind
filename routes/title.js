@@ -11,7 +11,7 @@ router.get('/title', function(req, res, next) {
 });
 
 router.get('/gameRoom:room',function(req,res){
-    res.render('gameRoom.ejs',{room:req.params.room, user:req.session.userid);
+    res.render('gameRoom.ejs',{room:req.params.room, user:req.session.userid});
 });
 
 module.exports = router;
