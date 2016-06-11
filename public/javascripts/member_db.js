@@ -1,4 +1,4 @@
-
+    
 var fs = require('fs');
 var ejs = require('ejs');
 var http = require('http');
@@ -6,10 +6,10 @@ var mysql = require('mysql');
 var express = require('express');
 
 var connection = mysql.createConnection({
-    host     : 'us-cdbr-iron-east-04.cleardb.net',
-    user     : 'baecb20311ffc0',
-    password : '06a3e36784d4d6f',
-    database : 'heroku_b9321d6b1f34f5f',
+    host     : '52.32.58.14',
+    user     : 'root',
+    password : '[784001]',
+    database : '[catchmind]',
     port     : 3306
 });
 
