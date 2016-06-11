@@ -14,19 +14,6 @@ module.exports = function(app){
     app.post('/title/login',function(req,res){
         login.login(req,res);
     });
-    
-    app.post('/waitingRoom/editRoom',function(req,res){
-        member_db.addRoom(req.body,res);
-    });
-
-    app.post('/waitingRoom/enterRoom',function(req,res){
-        member_db.updateRoomInfo(req.body,res);
-    });
-
-    app.post('/gameRoom/exitRoom',function(req,res){
-        member_db.exitRoom(req.body,res);
-    });
-    
 };
 
 process.on('uncaughtException', function (err) {

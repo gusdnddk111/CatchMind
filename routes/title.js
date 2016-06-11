@@ -12,13 +12,7 @@ router.get('/title', function(req, res, next) {
 });
 
 router.get('/gameRoom:room',function(req,res){
-    room_db.getMyRoom(req.params.room,function(result){
-        if(result.result===true){
-            res.render('gameRoom.ejs',{room:req.params.room, user:req.session.userid, roommax:result.roominfo[0].maxusercount});   
-        }else{
-            res.render('waitingRoom.ejs',{user:req.session.userid});
-        }
-    });
+            res.render('gameRoom.ejs',{room:req.params.room, user:req.session.userid, roommax:result.roominfo[0].maxusercount});
 });
 
 module.exports = router;
