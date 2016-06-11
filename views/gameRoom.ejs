@@ -139,6 +139,7 @@
 
         socket.on('userlist',function(data) {
             var users = data.users;
+            console.log(users.length);
             initUser();
             for (var i = 0; i < users.length; i++) {
                 createUser(users[i].position, users[i].id);
@@ -148,6 +149,8 @@
                     $('#user' + users[i].position + ' .userPic .Pic-anonymous').attr('src','./images/user-host.png');
                     if(users.length>1){
                         $('#btn-start').removeAttr('disabled');
+                    }else{
+                        $('#btn-start').attr('disabled');
                     }
                 }
             }
@@ -160,6 +163,10 @@
                 context.drawImage(img, 0, 0);
             });
             img.src = data.imgData;
+        });
+
+        socket.on('roomexit',function(data){
+            window.location.href = '/waitingRoom';
         });
 
         $('#btn_exit').click(function(){

@@ -135,9 +135,9 @@ io.sockets.on('connection', function (socket) {
     else{
       io.sockets.in(room).emit('userlist', {users: rooms[room].users});
     }
-
+  
     io.sockets.in('waitingRoom').emit("room",{rooms:rooms});
-    
+    io.sockets.connected[socket.id].emit('roomexit');  
   });
   
   socket.on('toServerImg',function(data){
