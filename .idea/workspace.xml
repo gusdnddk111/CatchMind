@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0a0e07de-56ec-4e90-b74f-1a9591ef8420" name="Default" comment="" />
+    <list default="true" id="0a0e07de-56ec-4e90-b74f-1a9591ef8420" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/gameRoom.ejs" afterPath="$PROJECT_DIR$/views/gameRoom.ejs" />
+    </list>
     <ignored path="CatchMind.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -76,8 +78,8 @@
       <file leaf-file-name="gameRoom.ejs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/gameRoom.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="203" column="0" selection-start-line="203" selection-start-column="0" selection-end-line="203" selection-end-column="0" />
+            <state relative-caret-position="165">
+              <caret line="203" column="20" selection-start-line="203" selection-start-column="20" selection-end-line="203" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -173,8 +175,8 @@
         <option value="$PROJECT_DIR$/routes/title.js" />
         <option value="$PROJECT_DIR$/public/javascripts/canvas.js" />
         <option value="$PROJECT_DIR$/views/waitingRoom.ejs" />
-        <option value="$PROJECT_DIR$/views/gameRoom.ejs" />
         <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/views/gameRoom.ejs" />
       </list>
     </option>
   </component>
@@ -418,12 +420,12 @@
       <workItem from="1465476424533" duration="3666000" />
       <workItem from="1465490995484" duration="5407000" />
       <workItem from="1465526874181" duration="37965000" />
-      <workItem from="1465743360287" duration="8224000" />
+      <workItem from="1465743360287" duration="9444000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="242001000" />
+    <option name="totallyTimeSpent" value="243221000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1294" height="814" extended-state="6" />
@@ -753,8 +755,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/gameRoom.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="203" column="0" selection-start-line="203" selection-start-column="0" selection-end-line="203" selection-end-column="0" />
+        <state relative-caret-position="165">
+          <caret line="203" column="20" selection-start-line="203" selection-start-column="20" selection-end-line="203" selection-end-column="20" />
           <folding />
         </state>
       </provider>
