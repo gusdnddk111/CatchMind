@@ -78,6 +78,7 @@ io.sockets.on('connection', function (socket) {
   console.log("socket connected!");
 
   socket.on("joinWaitingRoom",function(){
+    console.log("아,...그는 WaitingRoom으로 갔습니다...")
     socket.join('waitingRoom');
     io.sockets.in('waitingRoom').emit("room",{rooms:rooms});
   });
@@ -150,7 +151,7 @@ io.sockets.on('connection', function (socket) {
     else{
       io.sockets.in(room).emit('userlist', {users: rooms[room].users});
     }
-  
+    socket.leave(room);
     io.sockets.in('waitingRoom').emit("room",{rooms:rooms});
     io.sockets.connected[socket.id].emit('roomexit');  
   });
@@ -175,6 +176,7 @@ io.sockets.on('connection', function (socket) {
   socket.on('enterroom',function(data){
     rooms[data.roomnum].roominfo.currentcount += 1;
     console.log(rooms[data.roomnum].roominfo.currentcount);
+    socket.leave(data.roomnum);
     io.sockets.in('waitingRoom').emit("room",{rooms:rooms});
     io.sockets.connected[socket.id].emit('roomenter',{roomnum:roomnum});
   });
