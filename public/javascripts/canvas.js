@@ -181,7 +181,7 @@ $(document).ready(function() {
 		$('#btn-undo').click(function (e) {
 			e.preventDefault();
 			undoDraw();
-			
+
 		});
 
 		$('#brush_size').change();

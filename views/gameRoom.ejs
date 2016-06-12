@@ -240,6 +240,22 @@
             $(this).attr('disabled', 'disabled');
         }
     });
+
+ /*   $('#brush_size').click(function(){
+        socket.emit('host_check',{room:room, userid: name});
+        socket.on('host_check_complete',function(data){
+            if(data.result == false){
+                return false;
+            }
+            else{
+                $('#brush_size').change();
+            }
+        });
+    });
+
+    $('#colko').click(function(){
+        socket.emit('host_check',{room:room, userid: name});
+    });*/
 </script>
 
 </html>

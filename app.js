@@ -104,7 +104,22 @@ io.sockets.on('connection', function (socket) {
     io.sockets.in(room).emit('userlist', {users: rooms[room].users});
 
   });
-
+  
+/*
+  socket.on('host_check', function(data){
+    var click_user;
+    for(var i=0;i<rooms[data.room].users.length;i++){
+      if(rooms[data.room].users[i].id == data.name){
+        click_user = rooms[data.room].users[i];
+      }
+    }
+    if(click_user.host == true){
+      io.sockets.in(data.room).emit('host_check_complete', {result:true});
+    }else{
+      io.sockets.in(data.room).emit('host_check_complete', {result:false});
+    }
+  });*/
+  
   socket.on('toServer', function (data) {
     var position=0;
     for(var i=0;i<rooms[data.room].users.length;i++){
