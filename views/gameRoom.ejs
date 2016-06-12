@@ -201,10 +201,11 @@
         }
 
         function writeMessage(msg, pos) {
-            alert("a");
             var bubble_id="#bubble"+ pos;
             $(bubble_id).html("");
             $(bubble_id).html(msg);
+            alert(msg);
+            alert(pos);
             $(bubble_id).css('display','block');
             setTimeout(function(){
                 $(bubble_id).css('display','none');
