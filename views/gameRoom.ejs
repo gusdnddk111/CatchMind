@@ -134,7 +134,7 @@
 
         var socket = io.connect(serverURL);
 
-        socket.emit('joinroom',{room:'<%=room%>',userid: name});
+        socket.emit('joinroom',{room:room,userid: name});
 
         socket.on('userlist',function(data) {
             var users = data.users;

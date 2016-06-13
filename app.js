@@ -78,7 +78,7 @@ io.sockets.on('connection', function (socket) {
   console.log("socket connected!");
 
   socket.on("joinWaitingRoom",function(){
-    console.log("exit to waitRoom");
+    console.log("inWaitingRoom");
     socket.join('waitingRoom');
     io.sockets.in('waitingRoom').emit("room",{rooms:rooms});
   });
@@ -101,7 +101,7 @@ io.sockets.on('connection', function (socket) {
     
     socket.join(room);
     console.log(room+"번 방에 "+ rooms[room].users[rooms[room].users.length-1].id +" 입장");
-    
+    console.log(io.sockets.clients(room));
     io.sockets.in(room).emit('userlist', {users: rooms[room].users});
 
   });
@@ -137,7 +137,7 @@ io.sockets.on('connection', function (socket) {
     var room = data.room;
       for(var i=0; i<rooms[room].users.length;i++){
         if(data.id == rooms[room].users[i].id){
-          console.log(rooms[room].users[i].id+"disconnected");
+          console.log(rooms[room].users[i].id+"  disconnected");
           delete rooms[room].users[i];
           break;
         }
@@ -175,7 +175,7 @@ io.sockets.on('connection', function (socket) {
   
   socket.on('enterroom',function(data){
     rooms[data.roomnum].roominfo.currentcount += 1;
-    console.log(rooms[data.roomnum].roominfo.currentcount);
+    console.log("현재인원수: " + rooms[data.roomnum].roominfo.currentcount);
     socket.leave("waitingRoom");
     io.sockets.in('waitingRoom').emit("room",{rooms:rooms});
     io.sockets.connected[socket.id].emit('roomenter',{roomnum:roomnum});
