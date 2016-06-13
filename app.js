@@ -101,7 +101,7 @@ io.sockets.on('connection', function (socket) {
     
     socket.join(room);
     console.log(room+"번 방에 "+ rooms[room].users[rooms[room].users.length-1].id +" 입장");
-    console.log(io.sockets.clients(room));
+    console.log(rooms[room].users);
     io.sockets.in(room).emit('userlist', {users: rooms[room].users});
 
   });
