@@ -6,15 +6,6 @@ body{
 	min-width: 1200px;
 }
 
-#bubble1{display:none;}
-#bubble2{display:none;}
-#bubble3{display:none;}
-#bubble4{display:none;}
-#bubble5{display:none;}
-#bubble6{display:none;}
-#bubble7{display:none;}
-#bubble8{display:none;}
-
 .speech_bubble_left{
 	padding: 5px;
 	position: absolute;
@@ -24,6 +15,7 @@ body{
 	border-radius: 15px;
 	margin-left: 12%;
 	margin-top: 1%;
+	display: none;
 	z-index: 3;
 	min-height: 30px;
 	min-width:120px;
@@ -42,6 +34,7 @@ body{
 	border-radius: 15px;
 	margin-left: -7%;
 	margin-top: -3%;
+	display: none;
 	z-index: 3;
 	min-height: 80px;
 	min-width:120px;
