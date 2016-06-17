@@ -225,7 +225,8 @@
 
         function initUser(){
             for(var i=1;i<9;i++){
-                $('#user'+i).html('<div class="speech_bubble_left" id="bubble"+i></div>');
+                var bubbleId = "buuble" + i;
+                $('#user'+i).html('<div class="speech_bubble_left" id=bubbleId></div>');
             }
         }
 
