@@ -152,8 +152,8 @@ io.sockets.on('connection', function (socket) {
     
     if(rooms[room].roominfo.currentcount == 0){
       for(var i=0; i<rooms.length;i++){
-        if(room == rooms[i+1].roominfo.roomnum){
-          rooms.splice(i+1,1);
+        if(room == rooms[i].roominfo.roomnum-1){
+          rooms.splice(i,1);
           break;
         }
       }
@@ -183,16 +183,17 @@ io.sockets.on('connection', function (socket) {
 
 
   socket.on('createRoomToServer',function(data){
-    roomnum++;
     
     console.log('room create :' + roomnum +"번 방");
     rooms[roomnum] = new Object();
     rooms[roomnum].users=[];
     rooms[roomnum].count=0;
-    rooms[roomnum].roominfo={roomnum:roomnum, roomname:data.roomname, currentcount:1, maxcount:data.maxcount};
-    console.log(rooms);
+    rooms[roomnum].roominfo={roomnum:roomnum+1, roomname:data.roomname, currentcount:1, maxcount:data.maxcount};
+    console.log(rooms[roomnum].roominfo);
     io.sockets.in('waitingRoom').emit("room",{rooms:rooms});
     io.sockets.connected[socket.id].emit('roomenter',{roomnum:roomnum});
+
+    roomnum++;
   });
   
   socket.on('enterroom',function(data){
