@@ -199,9 +199,9 @@ io.sockets.on('connection', function (socket) {
   
   socket.on('enterroom',function(data){
     rooms[data.roomnum-1].roominfo.currentcount += 1;
-    console.log("현재인원수: " + rooms[data.roomnum-1].roominfo.currentcount);
+    console.log("현재인원수: " + rooms[data.roomnum].roominfo.currentcount);
     io.sockets.in('waitingRoom').emit("room",{rooms:rooms});
-    io.sockets.connected[socket.id].emit('roomenter',{roomnum:roomnum*1-1});
+    io.sockets.connected[socket.id].emit('roomenter',{roomnum:roomnum});
   });
 });
 
