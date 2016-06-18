@@ -161,6 +161,15 @@ io.sockets.on('connection', function (socket) {
     //io.sockets.in(data.room).emit('toClientImg',{imgData:data.img});
   });
 
+  socket.on("hostCheck",function (data) {
+    for(var i=0;i<rooms[room].users.length;i++){
+      if(rooms[data.room].users[i].id==data.name){
+        io.sockets.connected[socket.id].emit('hostPossible');
+        return;
+      }
+    }
+  });
+
   socket.on('createRoomToServer',function(data){
     roomnum++;
     
