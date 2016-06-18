@@ -162,7 +162,7 @@ io.sockets.on('connection', function (socket) {
   });
 
   socket.on("hostCheck",function (data) {
-    for(var i=0;i<rooms[room].users.length;i++){
+    for(var i=0;i<rooms[data.room].users.length;i++){
       if(rooms[data.room].users[i].id==data.name){
         io.sockets.connected[socket.id].emit('hostPossible');
         return;
