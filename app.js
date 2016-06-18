@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var http = require('http');
 
-var member_db = require('./member_db.js');
+var member_db = require('./public/javascripts/member_db.js');
 var title = require('./routes/title');
 var adr = require('./routes/adr.js');
 var api = require('./routes/api.js');
