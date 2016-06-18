@@ -202,6 +202,20 @@
             socket.emit('toServer', {message : msg, room:room, id:name});
         }
 
+        $('#btn-start').click(function(){
+            if(ongame == false){
+                ongame = true;
+                $(this).attr('disabled', 'disabled');
+                socket.emit('hostCheck',{room:room});
+                socket.on('host2',function (data) {
+                    alert("asd");
+                    alert(data.word);
+                    answerVisible(data.word);
+                    toolsVisible();
+                });
+            }
+        });
+
         function writeMessage(msg, pos) {
             var bubble_id="#bubble"+ pos;
             $(bubble_id).html("");
@@ -239,19 +253,6 @@
 
     });
 
-    $('#btn-start').click(function(){
-        if(ongame == false){
-            ongame = true;
-            $(this).attr('disabled', 'disabled');
-            socket.emit('hostCheck',{room:room});
-            socket.on('host2',function (data) {
-                alert("asd");
-                alert(data.word);
-                answerVisible(data.word);
-                toolsVisible();
-            });
-        }
-    });
 
     function toolsVisible(){
         $("#colors li").css("display","inline-block");
