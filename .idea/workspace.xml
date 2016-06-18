@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a0e07de-56ec-4e90-b74f-1a9591ef8420" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
     </list>
     <ignored path="CatchMind.iws" />
@@ -36,8 +37,8 @@
       <file leaf-file-name="waitingRoom.ejs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/waitingRoom.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="213">
-              <caret line="154" column="65" selection-start-line="154" selection-start-column="65" selection-end-line="154" selection-end-column="65" />
+            <state relative-caret-position="285">
+              <caret line="116" column="69" selection-start-line="116" selection-start-column="69" selection-end-line="116" selection-end-column="69" />
               <folding>
                 <marker date="1466255826434" expanded="true" signature="5052:5121" ph="..." />
               </folding>
@@ -424,12 +425,12 @@
       <workItem from="1465490995484" duration="5407000" />
       <workItem from="1465526874181" duration="37965000" />
       <workItem from="1465743360287" duration="13426000" />
-      <workItem from="1466181353678" duration="17839000" />
+      <workItem from="1466181353678" duration="18142000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="265042000" />
+    <option name="totallyTimeSpent" value="265345000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1294" height="814" extended-state="0" />
@@ -745,8 +746,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/waitingRoom.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="154" column="65" selection-start-line="154" selection-start-column="65" selection-end-line="154" selection-end-column="65" />
+        <state relative-caret-position="285">
+          <caret line="116" column="69" selection-start-line="116" selection-start-column="69" selection-end-line="116" selection-end-column="69" />
           <folding>
             <marker date="1466255826434" expanded="true" signature="5052:5121" ph="..." />
           </folding>
