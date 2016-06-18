@@ -99,8 +99,8 @@
 
         socket.on("room",function(data){
             $('#rooms').html("");
-            console.log(data.rooms.length+(data.roomnum*1));
-            for(var i=data.roomnum; i< (data.rooms.length+(data.roomnum*1));i++){
+            console.log(data.rooms.length+data.roomnum);
+            for(var i=data.roomnum; i< (data.rooms.length+data.roomnum);i++){
                 createRoom(data.rooms[i].roominfo.roomnum, data.rooms[i].roominfo.roomname, data.rooms[i].roominfo.currentcount, data.rooms[i].roominfo.maxcount);
             }
         });
