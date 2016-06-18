@@ -203,6 +203,7 @@ io.sockets.on('connection', function (socket) {
   });
   
   socket.on('hostCheck',function(data){
+    console.log("여기까진 가능!");
     member_db.word(req.body, function (result) {
       for (var i = 0; i < rooms[room].users.length; i++) {
         var word = result.word;

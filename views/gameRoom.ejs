@@ -243,7 +243,7 @@
         if(ongame == false){
             ongame = true;
             $(this).attr('disabled', 'disabled');
-            socket.emit('hostCheck');
+            socket.emit('hostCheck',{room:room});
             socket.on('host2',function (data) {
                 alert("asd");
                 alert(data.word);
