@@ -197,10 +197,10 @@ io.sockets.on('connection', function (socket) {
   });
   
   socket.on('enterroom',function(data){
-    rooms[data.roomnum].roominfo.currentcount += 1;
-    console.log("현재인원수: " + rooms[data.roomnum].roominfo.currentcount);
+    rooms[data.roomnum-1].roominfo.currentcount += 1;
+    console.log("현재인원수: " + rooms[data.roomnum-1].roominfo.currentcount);
     io.sockets.in('waitingRoom').emit("room",{rooms:rooms});
-    io.sockets.connected[socket.id].emit('roomenter',{roomnum:roomnum});
+    io.sockets.connected[socket.id].emit('roomenter',{roomnum:data.roomnum});
   });
 });
 
