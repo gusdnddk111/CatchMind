@@ -151,7 +151,8 @@ io.sockets.on('connection', function (socket) {
     rooms[room].roominfo.currentcount -= 1;
     
     if(rooms[room].roominfo.currentcount == 0){
-      for(var i=0; i<rooms.length;i++){
+      console.log("들어오긴하니?");
+      for(var i in rooms){
         if(room == rooms[i].roominfo.roomnum){
           rooms[i].remove();
           break;
