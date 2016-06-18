@@ -208,8 +208,6 @@
                 $(this).attr('disabled', 'disabled');
                 socket.emit('hostCheck',{room:room});
                 socket.on('host2',function (data) {
-                    alert("asd");
-                    alert(data.word);
                     answerVisible(data.word);
                     toolsVisible();
                 });
@@ -294,8 +292,8 @@
         CanvasObject.SetActive(false);
     }
     function answerVisible(word){
+        $('#word').css("display","");
         $('#word').html(word);
-        $('#word').css("display","absolute");
     }
 
 
