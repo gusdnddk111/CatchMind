@@ -205,6 +205,7 @@ io.sockets.on('connection', function (socket) {
   socket.on('hostCheck',function(data){
     member_db.word(function (result) {
       for (var i = 0; i < rooms[data.room].users.length; i++) {
+        console.log(result.word);
         var word = result.word;
         if (rooms[data.room].users[i].host == true) {
           io.sockets.connected[rooms[data.room].users[i].socketid].emit('host2', {word:word});

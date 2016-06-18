@@ -19,12 +19,14 @@ var self = module.exports = {
     word:function(req,callback){
         console.log("Select Word");
         var result = Math.floor(Math.random() * 10) + 1;
+        console.log(result);
         connection.query('SELECT * FROM answer Where id='+result, [], function (error, _rows, _cols) {
             if (error) {
                 console.log("ERROR : " + error);
                 return callback({result:false});
             }
             else {
+                console.log(_rows[0].word);
                 return callback({result:true, word:_rows[0].word});
             }
         });
