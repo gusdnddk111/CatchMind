@@ -145,8 +145,9 @@
                 createUser(users[i].position, users[i].id);
             }
         });
+
         socket.on("host1",function (data) {
-            $('#user' + users[i].position + ' .userPic .Pic-anonymous').attr('src','./images/user-host.png');
+            $('#user' + data.hostpos + ' .userPic .Pic-anonymous').attr('src','./images/user-host.png');
             startBtnVisible(data.len);
         });
 

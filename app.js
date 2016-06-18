@@ -106,7 +106,7 @@ io.sockets.on('connection', function (socket) {
 
     for(var i=0;i<rooms[room].users.length;i++){
       if(rooms[room].users[i].host == true){
-        io.sockets.connected[rooms[room].users[i].socketid].emit('host1',{len:rooms[room].users.length});
+        io.sockets.connected[rooms[room].users[i].socketid].emit('host1',{hostpos:rooms[room].users[i].position, len:rooms[room].users.length});
       }
     }
   });
