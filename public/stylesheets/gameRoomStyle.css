@@ -345,11 +345,10 @@ body{
 	min-width:130px;
 	display:none;
 
+	font-size: 20px;
+	padding-left: auto;
+	padding-right: auto;
 	border-radius:10px;
 	margin-top:5%;
 	margin-left: 5%;
-}
-
-.host{
-
 }
