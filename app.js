@@ -156,7 +156,7 @@ io.sockets.on('connection', function (socket) {
     else{
       io.sockets.in(room).emit('userlist', {users: rooms[room].users});
     }
-
+    console.log(rooms[room].users);
     socket.leave(room);
     io.sockets.in('waitingRoom').emit("room",{rooms:rooms});
     io.sockets.connected[socket.id].emit('roomexit');  
