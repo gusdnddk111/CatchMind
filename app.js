@@ -143,16 +143,16 @@ io.sockets.on('connection', function (socket) {
       for(var i=0; i<rooms[room].users.length;i++){
         if(socket.id == rooms[room].users[i].socketid){
           console.log(rooms[room].users[i].id+"  disconnected");
-          rooms[room].users.splice(i-1,1);
+          rooms[room].users.splice(i,1);
           break;
         }
-        console.log(rooms);
       }
     
     rooms[room].roominfo.currentcount -= 1;
     
     if(rooms[room].roominfo.currentcount == 0){
       rooms.splice(room-1,1);
+      console.log(rooms);
     }
     else{
       console.log("나갔네?");
