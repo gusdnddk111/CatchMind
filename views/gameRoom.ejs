@@ -286,12 +286,10 @@
     }
 
     function canvasActive(){
-        var CanvasObject = document.getElementById("canvas");
-        CanvasObject.removeAttr('disabled');
+        $('#canvas').removeAttr('disabled');
     }
     function canvasInactive(){
-        var CanvasObject = document.getElementById("canvas");
-        CanvasObject.attr('disabled', 'disabled');
+        $('#canvas').attr('disabled', 'disabled');
     }
     function answerVisible(word){
         $('#word').css("display","block");
