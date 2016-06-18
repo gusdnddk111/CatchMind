@@ -37,9 +37,9 @@
         <entry file="file://$PROJECT_DIR$/views/waitingRoom.ejs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="360">
-              <caret line="101" column="47" selection-start-line="101" selection-start-column="47" selection-end-line="101" selection-end-column="47" />
+              <caret line="101" column="35" selection-start-line="101" selection-start-column="35" selection-end-line="101" selection-end-column="35" />
               <folding>
-                <marker date="1466257039896" expanded="true" signature="5054:5123" ph="..." />
+                <marker date="1466257157902" expanded="true" signature="5038:5107" ph="..." />
               </folding>
             </state>
           </provider>
@@ -423,12 +423,12 @@
       <workItem from="1465490995484" duration="5407000" />
       <workItem from="1465526874181" duration="37965000" />
       <workItem from="1465743360287" duration="13426000" />
-      <workItem from="1466181353678" duration="18783000" />
+      <workItem from="1466181353678" duration="18900000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="265986000" />
+    <option name="totallyTimeSpent" value="266103000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1294" height="814" extended-state="0" />
@@ -752,9 +752,9 @@
     <entry file="file://$PROJECT_DIR$/views/waitingRoom.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
-          <caret line="101" column="47" selection-start-line="101" selection-start-column="47" selection-end-line="101" selection-end-column="47" />
+          <caret line="101" column="35" selection-start-line="101" selection-start-column="35" selection-end-line="101" selection-end-column="35" />
           <folding>
-            <marker date="1466257039896" expanded="true" signature="5054:5123" ph="..." />
+            <marker date="1466257157902" expanded="true" signature="5038:5107" ph="..." />
           </folding>
         </state>
       </provider>
