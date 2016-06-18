@@ -143,21 +143,11 @@
             for (var i = 0; i < users.length; i++) {
                 createUser(users[i].position, users[i].id);
             }
-            for (var i = 0; i < users.length; i++) {
-                if(users[i].host == true){
-                    $('#user' + users[i].position + ' .userPic .Pic-anonymous').attr('src','./images/user-host.png');
-                    if(users.length>1){
-                        $('#btn-start').removeAttr('disabled');
-                    }else{
-                        $('#btn-start').attr('disabled');
-                    }
-                }
-            }
         });
         socket.on("host1",function (data) {
+            $('#user' + users[i].position + ' .userPic .Pic-anonymous').attr('src','./images/user-host.png');
             startBtnVisible(data.len);
         });
-
 
         socket.on('toClientImg',function(data){
             var img = new Image();
@@ -180,7 +170,6 @@
                 alert("게임중엔 방을 나갈 수 없습니다.");
             }
         });
-
 
         socket.on('toClient', function(data) {
             writeMessage(data.msg,data.position);
@@ -238,7 +227,6 @@
 
             }
         }
-
 
     });
 
