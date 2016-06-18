@@ -99,9 +99,7 @@
 
         socket.on("room",function(data){
             $('#rooms').html("");
-            console.log(data.rooms[0]);
-            console.log(data.rooms[1]);
-            for(var i=0; i< data.rooms.length;i++){
+            for(var i=1; i< data.rooms.length+1;i++){
                 createRoom(data.rooms[i].roominfo.roomnum, data.rooms[i].roominfo.roomname, data.rooms[i].roominfo.currentcount, data.rooms[i].roominfo.maxcount);
             }
         });
