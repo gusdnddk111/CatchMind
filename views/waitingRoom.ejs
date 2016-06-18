@@ -100,7 +100,7 @@
         socket.on("room",function(data){
             $('#rooms').html("");
             console.log(data.rooms.length);
-            for(var i=0; i< data.rooms.length;i++){
+            for(var i in data.rooms){
                 createRoom(data.rooms[i].roominfo.roomnum, data.rooms[i].roominfo.roomname, data.rooms[i].roominfo.currentcount, data.rooms[i].roominfo.maxcount);
             }
         });

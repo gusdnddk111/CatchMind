@@ -72,7 +72,7 @@ server.listen(3000);
 var io = require('socket.io').listen(server);
 
 var roomnum=0;
-var rooms = [];
+var rooms = {};
 
 io.sockets.on('connection', function (socket) {
   console.log("socket connected!");
@@ -189,16 +189,14 @@ io.sockets.on('connection', function (socket) {
     rooms[roomnum] = new Object();
     rooms[roomnum].users=[];
     rooms[roomnum].count=0;
-    rooms[roomnum].roominfo={roomnum:roomnum+1, roomname:data.roomname, currentcount:1, maxcount:data.maxcount};
-    console.log(rooms[roomnum].roominfo);
-    var num = roomnum*1
-    io.sockets.in('waitingRoom').emit("room",{rooms:rooms,roomnum:num});
+    rooms[roomnum].roominfo={roomnum:roomnum, roomname:data.roomname, currentcount:1, maxcount:data.maxcount};
+    console.log(rooms);
+    io.sockets.in('waitingRoom').emit("room",{rooms:rooms});
     io.sockets.connected[socket.id].emit('roomenter',{roomnum:roomnum});
-
   });
   
   socket.on('enterroom',function(data){
-    rooms[data.roomnum-1].roominfo.currentcount += 1;
+    rooms[data.roomnum].roominfo.currentcount += 1;
     console.log("현재인원수: " + rooms[data.roomnum].roominfo.currentcount);
     io.sockets.in('waitingRoom').emit("room",{rooms:rooms});
     io.sockets.connected[socket.id].emit('roomenter',{roomnum:roomnum});
