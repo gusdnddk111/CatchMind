@@ -247,6 +247,7 @@ body{
 	height: 75%;
 	padding: 2px;
 	font-size: 12px;
+	display:none;
 }
 
 
@@ -258,6 +259,7 @@ body{
 	height:75%;
 	padding: 2px;
 	font-size: 12px;
+	display:none;
 }
 
 #btn_exit {
@@ -278,7 +280,7 @@ body{
 	margin-left: 10px;
 	cursor: pointer;
 	width:16.5%;
-	display: inline-block;
+	display: none;
 }
 
 #Pic-titlelogo {
