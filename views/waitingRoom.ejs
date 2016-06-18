@@ -152,7 +152,7 @@
             socket.emit("enterroom",{roomnum:roomnum,current:current,max:max});
             console.log("되니?");
             socket.on("roomenter",function(data){
-                window.location.href = '/gameRoom' + data.roomnum;
+                window.location.href = '/gameRoom' + data.roomnum-1;
             });
         }
     }
