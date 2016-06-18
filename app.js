@@ -190,7 +190,8 @@ io.sockets.on('connection', function (socket) {
     rooms[roomnum].count=0;
     rooms[roomnum].roominfo={roomnum:roomnum+1, roomname:data.roomname, currentcount:1, maxcount:data.maxcount};
     console.log(rooms[roomnum].roominfo);
-    io.sockets.in('waitingRoom').emit("room",{rooms:rooms,roomnum:roomnum*1});
+    var num = roomnum*1
+    io.sockets.in('waitingRoom').emit("room",{rooms:rooms,roomnum:num});
     io.sockets.connected[socket.id].emit('roomenter',{roomnum:roomnum});
 
     roomnum++;
