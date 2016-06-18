@@ -289,7 +289,7 @@
         $('#canvas').removeAttr('disabled');
     }
     function canvasInactive(){
-        $('#canvas').attr('disabled', 'disabled');
+        $('#canvas').css('touch-callout', 'none');
     }
     function answerVisible(word){
         $('#word').css("display","block");
