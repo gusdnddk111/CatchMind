@@ -106,8 +106,6 @@ io.sockets.on('connection', function (socket) {
 
     for(var i=0;i<rooms[room].users.length;i++){
       if(rooms[room].users[i].host == true){
-        console.log(rooms[room].users[i].id);
-        console.log(rooms[room].users[i].host);
         io.sockets.connected[rooms[room].users[i].socketid].emit('host1',{len:rooms[room].users.length});
       }
     }
@@ -143,7 +141,7 @@ io.sockets.on('connection', function (socket) {
   socket.on('disconnect1',function(data) {
     var room = data.room;
       for(var i=0; i<rooms[room].users.length;i++){
-        if(data.id == rooms[room].users[i].id){
+        if(socket.id == rooms[room].users[i].socketid){
           console.log(rooms[room].users[i].id+"  disconnected");
           delete rooms[room].users[i];
           break;
