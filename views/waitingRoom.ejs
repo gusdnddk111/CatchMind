@@ -99,7 +99,7 @@
 
         socket.on("room",function(data){
             $('#rooms').html("");
-            for(var i=0; i< data.rooms.length;i++){
+            for(var i=1; i< data.rooms.length;i++){
                 createRoom(data.rooms[i].roominfo.roomnum, data.rooms[i].roominfo.roomname, data.rooms[i].roominfo.currentcount, data.rooms[i].roominfo.maxcount);
             }
         });
