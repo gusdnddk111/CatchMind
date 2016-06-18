@@ -157,7 +157,8 @@ io.sockets.on('connection', function (socket) {
   });
   
   socket.on('toServerImg',function(data){
-    io.sockets.in(data.room).emit('toClientImg',{imgData:data.img});
+    socket.broadcast.to(data.room).emit('toClientImg',{imgData:data.img});
+    //io.sockets.in(data.room).emit('toClientImg',{imgData:data.img});
   });
 
   socket.on('createRoomToServer',function(data){
