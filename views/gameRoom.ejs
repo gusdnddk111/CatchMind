@@ -243,6 +243,11 @@
         if(ongame == false){
             ongame = true;
             $(this).attr('disabled', 'disabled');
+            socket.emit('hostCheck');
+            socket.on('host2',function (data) {
+                answerVisible(data.word);
+                toolsVisible();
+            });
         }
     });
 
@@ -253,6 +258,15 @@
         $("#brush_size").css("display","inline-block");
         $("#btn-undo").css("display","inline-block");
         $("#btn-reset").css("display","inline-block");
+    }
+
+    function toolsInvisible(){
+        $("#colors li").css("display","none");
+        $("#colors li.selected").css("display","none");
+        $("#tools label").html("");
+        $("#brush_size").css("display","none");
+        $("#btn-undo").css("display","none");
+        $("#btn-reset").css("display","none");
     }
 
     function startBtnVisible(){
@@ -276,6 +290,11 @@
         var CanvasObject = document.getElementById("canvas");
         CanvasObject.SetActive(false);
     }
+    function answerVisible(word){
+        $('#word').html(word);
+        $('#word').css("display","absolute");
+    }
+
 
 </script>
 
