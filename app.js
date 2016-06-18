@@ -154,6 +154,8 @@ io.sockets.on('connection', function (socket) {
       delete rooms[room];
     }
     else{
+      console.log("나갔네?");
+      console.log(rooms[room].users);
       io.sockets.in(room).emit('userlist', {users: rooms[room].users});
     }
     console.log(rooms[room].users);

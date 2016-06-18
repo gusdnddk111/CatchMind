@@ -136,7 +136,6 @@
         socket.emit('joinroom',{room:room,userid: name});
 
         socket.on('userlist',function(data) {
-            alert("asd");
             var users = data.users;
             console.log(users.length);
             initUser();
@@ -144,10 +143,18 @@
             for (var i = 0; i < users.length; i++) {
                 createUser(users[i].position, users[i].id);
             }
+            for (var i = 0; i < users.length; i++) {
+                if(users[i].host == true){
+                    $('#user' + users[i].position + ' .userPic .Pic-anonymous').attr('src','./images/user-host.png');
+                    if(users.length>1){
+                        $('#btn-start').removeAttr('disabled');
+                    }else{
+                        $('#btn-start').attr('disabled');
+                    }
+                }
+            }
         });
-
         socket.on("host1",function (data) {
-            $('#user' + data.hostpos + ' .userPic .Pic-anonymous').attr('src','./images/user-host.png');
             startBtnVisible(data.len);
         });
 
