@@ -145,6 +145,10 @@
             for (var i = 0; i < users.length; i++) {
                 if(users[i].host == true){
                     $('#user' + users[i].position + ' .userPic .Pic-anonymous').attr('src','./images/user-host.png');
+                    socket.emit("host");
+                    socket.on("hostPossible",function(){
+                        $('#colors li').css('display','inline-block');
+                    });
                     if(users.length>1){
                         $('#btn-start').removeAttr('disabled');
                     }else{
@@ -152,10 +156,6 @@
                     }
                 }
             }
-            socket.emit("hostCheck",{user:name, room:room});
-            socket.on("hostPossible",function (data) {
-                alert("asdasd");
-            });
         });
 
         //소켓.emit user.host가 트루면 그 아이디한테만 소켓을 쏜다 버튼들과 색깔표등이 보이도록

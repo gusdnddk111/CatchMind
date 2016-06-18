@@ -322,7 +322,7 @@ body{
 #colors li{
 	height: 70%;
 	width: 5.3%;
-	display: inline-block;
+	display: none;
 	cursor: pointer;
 }
 
