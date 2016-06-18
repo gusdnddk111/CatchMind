@@ -157,7 +157,7 @@ io.sockets.on('connection', function (socket) {
       io.sockets.in(room).emit('userlist', {users: rooms[room].users});
     }
     console.log(rooms[room].users);
-    socket.leave(room);
+    io.sockets.connected[rooms[room].users[i].socketid].emit('host1',{len:rooms[room].users.length});
     io.sockets.in('waitingRoom').emit("room",{rooms:rooms});
     io.sockets.connected[socket.id].emit('roomexit');  
   });
@@ -184,7 +184,6 @@ io.sockets.on('connection', function (socket) {
   socket.on('enterroom',function(data){
     rooms[data.roomnum].roominfo.currentcount += 1;
     console.log("현재인원수: " + rooms[data.roomnum].roominfo.currentcount);
-    socket.leave("waitingRoom");
     io.sockets.in('waitingRoom').emit("room",{rooms:rooms});
     io.sockets.connected[socket.id].emit('roomenter',{roomnum:roomnum});
   });
