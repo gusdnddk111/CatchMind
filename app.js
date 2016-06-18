@@ -152,8 +152,10 @@ io.sockets.on('connection', function (socket) {
       io.sockets.in(room).emit('userlist', {users: rooms[room].users});
     }
     
-    for(var i=0;i<rooms[room].users.length();i++){
+    for(var i=0;i<rooms[room].users.length;i++){
       if(rooms[room].users[i].host == true){
+        console.log(rooms[room].users[i].id);
+        console.log(rooms[room].users[i].host);
         io.sockets.connected[rooms[room].users[i].socketid].emit('host');
       }
     }
