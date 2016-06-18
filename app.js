@@ -151,7 +151,12 @@ io.sockets.on('connection', function (socket) {
     rooms[room].roominfo.currentcount -= 1;
     
     if(rooms[room].roominfo.currentcount == 0){
-      rooms.splice(room-1,1);
+      for(var i=0; i<rooms.length;i++){
+        if(room == rooms[i].roominfo.roomnum){
+          rooms[room].users.splice(i,1);
+          break;
+        }
+      }
       console.log(rooms);
     }
     else{
