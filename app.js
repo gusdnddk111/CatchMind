@@ -158,12 +158,14 @@ io.sockets.on('connection', function (socket) {
       io.sockets.in(room).emit('userlist', {users: rooms[room].users});
       console.log(rooms[room].users);
       for(var i=0;i<rooms[room].users.length;i++){
+        console.log(rooms[room].users[i]);
+        console.log(rooms[room].users[i].host);
         if(rooms[room].users[i].host == true){
           io.sockets.connected[rooms[room].users[i].socketid].emit('host1',{hostpos:rooms[room].users[i].position, len:rooms[room].users.length});
         }
       }
     }
-    
+
     io.sockets.in('waitingRoom').emit("room",{rooms:rooms});
     io.sockets.connected[socket.id].emit('roomexit');  
   });
