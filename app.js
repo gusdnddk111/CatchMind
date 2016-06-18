@@ -169,7 +169,7 @@ io.sockets.on('connection', function (socket) {
     //io.sockets.in(data.room).emit('toClientImg',{imgData:data.img});
   });
 
-  socket.on("host",function () {
+  socket.emit("host",function () {
     io.sockets.connected[socket.id].emit('hostPossible');
   });
 
