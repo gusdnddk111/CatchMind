@@ -143,7 +143,7 @@ io.sockets.on('connection', function (socket) {
       for(var i=0; i<rooms[room].users.length;i++){
         if(socket.id == rooms[room].users[i].socketid){
           console.log(rooms[room].users[i].id+"  disconnected");
-          delete rooms[room].users[i];
+          rooms[room].users.splice(i,1);
           break;
         }
       }
@@ -151,7 +151,7 @@ io.sockets.on('connection', function (socket) {
     rooms[room].roominfo.currentcount -= 1;
     
     if(rooms[room].roominfo.currentcount == 0){
-      delete rooms[room];
+      rooms.splice(room-1,1);
     }
     else{
       console.log("나갔네?");
