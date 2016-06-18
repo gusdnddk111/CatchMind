@@ -108,7 +108,7 @@ io.sockets.on('connection', function (socket) {
       if(rooms[room].users[i].host == true){
         console.log(rooms[room].users[i].id);
         console.log(rooms[room].users[i].host);
-        io.sockets.connected[rooms[room].users[i].socketid].emit('host');
+        io.sockets.connected[rooms[room].users[i].socketid].emit('host1',{len:rooms[room].users.length});
       }
     }
   });

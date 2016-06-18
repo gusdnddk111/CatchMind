@@ -139,6 +139,7 @@
             var users = data.users;
             console.log(users.length);
             initUser();
+            startBtnInvisible();
             for (var i = 0; i < users.length; i++) {
                 createUser(users[i].position, users[i].id);
             }
@@ -153,20 +154,10 @@
                 }
             }
         });
-
-        socket.on("host",function (data) {
-            alert("asd");
-            $("#colors li").css("display","inline-block");
-            $("#colors li.selected").css("display","inline-block");
-            $("#tools label").html("Brush Size:");
-            $("#brush_size").css("display","inline-block");
-            $("#btn-undo").css("display","inline-block");
-            $("#btn-reset").css("display","inline-block");
+        socket.on("host1",function (data) {
+            startBtnVisible(data.len);
         });
 
-        //다른 애들한텐 안보여야하고 방장한테만 보여야하므로 socket을 안쓰곤 못베긴단말이지...
-        //일단 소켓을 보내고 서버에서 호스트한테만 EMIT을 하는
-        //소켓.emit user.host가 트루면 그 아이디한테만 소켓을 쏜다 버튼들과 색깔표등이 보이도록
 
         socket.on('toClientImg',function(data){
             var img = new Image();
@@ -258,21 +249,37 @@
         }
     });
 
- /*   $('#brush_size').click(function(){
-        socket.emit('host_check',{room:room, userid: name});
-        socket.on('host_check_complete',function(data){
-            if(data.result == false){
-                return false;
-            }
-            else{
-                $('#brush_size').change();
-            }
-        });
-    });
+    function toolsVisible(){
+        $("#colors li").css("display","inline-block");
+        $("#colors li.selected").css("display","inline-block");
+        $("#tools label").html("Brush Size:");
+        $("#brush_size").css("display","inline-block");
+        $("#btn-undo").css("display","inline-block");
+        $("#btn-reset").css("display","inline-block");
+    }
 
-    $('#colko').click(function(){
-        socket.emit('host_check',{room:room, userid: name});
-    });*/
+    function startBtnVisible(){
+        $("#btn-start").css("display","block");
+    }
+    function startBtnInvisible(len){
+        $("#btn-start").css("display","none");
+        if(len > 2){
+            $("#btn-start").removeAttr('disabled');
+        }
+        else{
+            $("#btn-start").attr('disabled', 'disabled');
+        }
+    }
+
+    function canvasActive(){
+        var CanvasObject = document.getElementById("canvas");
+        CanvasObject.SetActive(true);
+    }
+    function canvasInactive(){
+        var CanvasObject = document.getElementById("canvas");
+        CanvasObject.SetActive(false);
+    }
+
 </script>
 
 </html>
