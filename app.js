@@ -104,6 +104,13 @@ io.sockets.on('connection', function (socket) {
     console.log(rooms[room].users);
     io.sockets.in(room).emit('userlist', {users: rooms[room].users});
 
+    for(var i=0;i<rooms[room].users.length;i++){
+      if(rooms[room].users[i].host == true){
+        console.log(rooms[room].users[i].id);
+        console.log(rooms[room].users[i].host);
+        io.sockets.connected[rooms[room].users[i].socketid].emit('host');
+      }
+    }
   });
   
 /*
@@ -151,14 +158,7 @@ io.sockets.on('connection', function (socket) {
     else{
       io.sockets.in(room).emit('userlist', {users: rooms[room].users});
     }
-    
-    for(var i=0;i<rooms[room].users.length;i++){
-      if(rooms[room].users[i].host == true){
-        console.log(rooms[room].users[i].id);
-        console.log(rooms[room].users[i].host);
-        io.sockets.connected[rooms[room].users[i].socketid].emit('host');
-      }
-    }
+
     socket.leave(room);
     io.sockets.in('waitingRoom').emit("room",{rooms:rooms});
     io.sockets.connected[socket.id].emit('roomexit');  
@@ -169,9 +169,6 @@ io.sockets.on('connection', function (socket) {
     //io.sockets.in(data.room).emit('toClientImg',{imgData:data.img});
   });
 
-  socket.emit("host",function () {
-    io.sockets.connected[socket.id].emit('hostPossible');
-  });
 
   socket.on('createRoomToServer',function(data){
     roomnum++;
