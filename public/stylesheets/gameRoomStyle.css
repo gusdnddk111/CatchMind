@@ -36,11 +36,12 @@ body{
 	margin-top: -3%;
 	display: none;
 	z-index: 3;
-	min-height: 80px;
+	min-height: 30px;
 	min-width:120px;
+	max-height:150px;
 
-	width:12%;
-	height:13%;
+	width:11%;
+	height:auto;
 }
 
 .user {
