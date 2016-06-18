@@ -140,7 +140,6 @@ $(document).ready(function() {
 
 					var imgtodata = document.getElementById("canvas").toDataURL("image/png");
 					socket.emit('toServerImg',{room:room,img:imgtodata});
-					
 				}
 			});
 

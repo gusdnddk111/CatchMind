@@ -91,10 +91,10 @@ io.sockets.on('connection', function (socket) {
     else {rooms[room].count += 1;}
 
     if(rooms[room].roominfo.currentcount==1){
-      var obj={id:name, position:rooms[room].count, host:true};
+      var obj={id:name, position:rooms[room].count, host:true , socketid:socket.id};
     }
     else{
-      var obj={id:name, position:rooms[room].count, host:false};
+      var obj={id:name, position:rooms[room].count, host:false, socketid:socket.id};
     }
 
     rooms[room].users.push(obj);
@@ -151,13 +151,19 @@ io.sockets.on('connection', function (socket) {
     else{
       io.sockets.in(room).emit('userlist', {users: rooms[room].users});
     }
+    
+    for(var i=0;i<rooms[room].users.length();i++){
+      if(rooms[room].users[i].host == true){
+        io.sockets.connected[rooms[room].users[i].socketid].emit('host');
+      }
+    }
     socket.leave(room);
     io.sockets.in('waitingRoom').emit("room",{rooms:rooms});
     io.sockets.connected[socket.id].emit('roomexit');  
   });
   
   socket.on('toServerImg',function(data){
-    socket.in(data.room).emit('toClientImg',{imgData:data.img});
+    socket.broadcast.to(data.room).emit('toClientImg',{imgData:data.img});
     //io.sockets.in(data.room).emit('toClientImg',{imgData:data.img});
   });
 
