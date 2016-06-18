@@ -203,7 +203,7 @@ io.sockets.on('connection', function (socket) {
   });
   
   socket.on('hostCheck',function(data){
-    member_db.login(req.body, function (result) {
+    member_db.word(req.body, function (result) {
       for (var i = 0; i < rooms[room].users.length; i++) {
         var word = result.word;
         if (rooms[room].users[i].host == true) {

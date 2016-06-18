@@ -149,7 +149,6 @@
         if(current == max){
             alert("방이 꽉차서 들어갈 수 없습니다.");
         }else{
-            alert(roomnum+"번방 입장, 현재유저수: "+current);
             socket.emit("enterroom",{roomnum:roomnum,current:current,max:max});
             console.log("되니?");
             socket.on("roomenter",function(data){
@@ -157,9 +156,6 @@
             });
         }
     }
-
-
-
 
 </script>
 </html>
