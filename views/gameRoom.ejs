@@ -140,6 +140,7 @@
             console.log(users.length);
             initUser();
             startBtnInvisible();
+            canvasInactive();
             for (var i = 0; i < users.length; i++) {
                 createUser(users[i].position, users[i].id);
             }
@@ -210,6 +211,7 @@
                 socket.on('host2',function (data) {
                     answerVisible(data.word);
                     toolsVisible();
+                    canvasActive();
                 });
             }
         });
@@ -285,11 +287,11 @@
 
     function canvasActive(){
         var CanvasObject = document.getElementById("canvas");
-        CanvasObject.SetActive(true);
+        CanvasObject.removeAttr('disabled');
     }
     function canvasInactive(){
         var CanvasObject = document.getElementById("canvas");
-        CanvasObject.SetActive(false);
+        CanvasObject.attr('disabled', 'disabled');
     }
     function answerVisible(word){
         $('#word').css("display","block");

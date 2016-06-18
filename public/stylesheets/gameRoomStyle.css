@@ -345,9 +345,9 @@ body{
 	min-width:130px;
 	display:none;
 
+	text-align: center;
 	font-size: 20px;
-	padding-left: auto;
-	padding-right: auto;
+	padding-top: 0.3%;
 	border-radius:10px;
 	margin-top:5%;
 	margin-left: 5%;
