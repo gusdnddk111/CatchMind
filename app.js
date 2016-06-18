@@ -183,7 +183,8 @@ io.sockets.on('connection', function (socket) {
 
 
   socket.on('createRoomToServer',function(data){
-    
+    roomnum++;
+
     console.log('room create :' + roomnum +"번 방");
     rooms[roomnum] = new Object();
     rooms[roomnum].users=[];
@@ -194,7 +195,6 @@ io.sockets.on('connection', function (socket) {
     io.sockets.in('waitingRoom').emit("room",{rooms:rooms,roomnum:num});
     io.sockets.connected[socket.id].emit('roomenter',{roomnum:roomnum});
 
-    roomnum++;
   });
   
   socket.on('enterroom',function(data){
