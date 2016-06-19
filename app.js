@@ -115,7 +115,7 @@ io.sockets.on('connection', function (socket) {
   socket.on('toServer', function (data) {
     var position=0;
     for(var i=0;i<rooms[data.room].users.length;i++){
-      if(rooms[data.room].users[i].id == data.id){
+      if(rooms[data.room].users[i].socketid == socket.id){
         position=i+1;
         break;
       } 
@@ -129,7 +129,7 @@ io.sockets.on('connection', function (socket) {
     var room = data.room;
     var position=0;
     for(var i=0;i<rooms[room].users.length;i++){
-      if(rooms[room].users[i].id == data.id){
+      if(rooms[room].users[i].socketid == socket.id){
         position=i+1;
         break;
       }
@@ -147,6 +147,7 @@ io.sockets.on('connection', function (socket) {
       console.log("정답!");
       rooms[room].answer="";
       rooms[room].roominfo.ongame=false;
+      io.sockets.in('waitingRoom').emit("room", {rooms: rooms});
       io.sockets.in(room).emit('gameEndToClient', {state:false});
       for(var i=0;i<rooms[room].users.length;i++){
         if(rooms[room].users[i].host == true){
@@ -237,6 +238,7 @@ io.sockets.on('connection', function (socket) {
   socket.on('startToServer',function(data){
     if(rooms[data.room].roominfo.ongame==false){
       rooms[data.room].roominfo.ongame=true;
+      io.sockets.in('waitingRoom').emit("room", {rooms: rooms});
       io.sockets.in(data.room).emit('startToClient',{state:true});
     }
   });

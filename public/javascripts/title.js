@@ -26,7 +26,7 @@ $(document).ready(function(){
                 data:input_data,
                 success: function(data){
                     if(data.result == true){
-                        console.log(data);
+                        alert("회원가입이 완료되었습니다.");
                         location.href='/title';
                     }
                     else if(data.result == "overlap"){
