@@ -91,9 +91,9 @@ $(document).ready(function() {
 		$('#canvas').mousedown(function (e) {
 			if (e.button == 0) {
 				draw = 1;
-				saveActions(e.pageX+", "+e.pageY+", "+ $('#canvas').offset().left + ", " +$('#canvas').offset().left);
+				saveActions();
 
-				console.log();
+				console.log(e.pageX+", "+e.pageY+", "+ $('#canvas').offset().left + ", " +$('#canvas').offset().left);
 				cntxt.beginPath();
 				cntxt.moveTo(e.pageX - $('#canvas').offset().left , e.pageY - $('#canvas').offset().top );
 			}
