@@ -299,9 +299,8 @@ body{
 	height: 80%;
 	display: block;
 	position:absolute;
-	margin-right: auto;
-	margin-left: auto;
-	margin-top: 5px;
+	margin-left: 10%;
+	margin-top: 10%;
 }
 
 #Pic-sketchbook {
