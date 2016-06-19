@@ -112,21 +112,6 @@ io.sockets.on('connection', function (socket) {
     }
   });
   
-/*
-  socket.on('host_check', function(data){
-    var click_user;
-    for(var i=0;i<rooms[data.room].users.length;i++){
-      if(rooms[data.room].users[i].id == data.name){
-        click_user = rooms[data.room].users[i];
-      }
-    }
-    if(click_user.host == true){
-      io.sockets.in(data.room).emit('host_check_complete', {result:true});
-    }else{
-      io.sockets.in(data.room).emit('host_check_complete', {result:false});
-    }
-  });*/
-  
   socket.on('toServer', function (data) {
     var position=0;
     for(var i=0;i<rooms[data.room].users.length;i++){
@@ -137,6 +122,25 @@ io.sockets.on('connection', function (socket) {
     }
     console.log(data.room+"번방의 클라이언트들에게 "+ position+"이: " + data.message);
     io.sockets.in(data.room).emit('toClient',{msg:data.message,position:position});
+  });
+
+  socket.on('toServerCheck', function (data) {
+    var position=0;
+    for(var i=0;i<rooms[data.room].users.length;i++){
+      if(rooms[data.room].users[i].id == data.id){
+        position=i+1;
+        break;
+      }
+    }
+    console.log(data.room+"번방의 클라이언트들에게 "+ position+"이 : " + data.message + " 이 정답일까요?");
+    if(rooms[data.room].answer == data.message){
+      io.sockets.in(data.room).emit('checkToClient',{check:true,msg:data.message,position:position});
+      rooms[data.room].answer="";
+      rooms[data.room].roominfo.ongame=false;
+    }
+    else{
+      io.sockets.in(data.room).emit('checkToClient',{check:false,msg:data.message,position:position});
+    }
   });
 
   socket.on('disconnect1',function(data) {
@@ -152,7 +156,6 @@ io.sockets.on('connection', function (socket) {
     rooms[room].roominfo.currentcount -= 1;
     
     if(rooms[room].roominfo.currentcount == 0){
-      console.log("들어오긴하니?");
       for(var i in rooms){
         if(room == rooms[i].roominfo.roomnum){
           delete rooms[i];
@@ -162,7 +165,6 @@ io.sockets.on('connection', function (socket) {
       console.log(rooms);
     }
     else{
-      console.log("나갔네?");
       io.sockets.in(room).emit('userlist', {users: rooms[room].users});
       console.log(rooms[room].users);
       for(var i=0;i<rooms[room].users.length;i++){
@@ -189,6 +191,7 @@ io.sockets.on('connection', function (socket) {
     rooms[roomnum] = new Object();
     rooms[roomnum].users=[];
     rooms[roomnum].count=0;
+    rooms[roomnum].answer="";
     rooms[roomnum].roominfo={roomnum:roomnum, roomname:data.roomname, currentcount:1, maxcount:data.maxcount, ongame:false};
     console.log(rooms);
     io.sockets.in('waitingRoom').emit("room",{rooms:rooms});
@@ -196,10 +199,15 @@ io.sockets.on('connection', function (socket) {
   });
   
   socket.on('enterroom',function(data){
-    rooms[data.roomnum].roominfo.currentcount += 1;
-    console.log("현재인원수: " + rooms[data.roomnum].roominfo.currentcount);
-    io.sockets.in('waitingRoom').emit("room",{rooms:rooms});
-    io.sockets.connected[socket.id].emit('roomenter',{roomnum:roomnum});
+    if(rooms[data.roomnum].roominfo.ongame==true){
+      io.sockets.connected[socket.id].emit('roomenter',{result:false});
+    }
+    else {
+      rooms[data.roomnum].roominfo.currentcount += 1;
+      console.log("현재인원수: " + rooms[data.roomnum].roominfo.currentcount);
+      io.sockets.in('waitingRoom').emit("room", {rooms: rooms});
+      io.sockets.connected[socket.id].emit('roomenter', {result: true, roomnum: roomnum});
+    }
   });
   
   socket.on('startToServer',function(data){
@@ -213,6 +221,7 @@ io.sockets.on('connection', function (socket) {
     member_db.word(data,function (result) {
       for (var i = 0; i < rooms[data.room].users.length; i++) {
         var word = result.word;
+        rooms[data.room].answer=word;
         if (rooms[data.room].users[i].host == true) {
           io.sockets.connected[rooms[data.room].users[i].socketid].emit('host2', {word:word});
         }

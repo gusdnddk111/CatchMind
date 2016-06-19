@@ -181,10 +181,6 @@
             }
         });
 
-        socket.on('toClient', function(data) {
-            writeMessage(data.msg,data.position);
-        });
-
         $("#chattingbox").keyup(function(event) {
             if (event.which == 13) {
                 var msg = $('#chattingbox').val();
@@ -199,12 +195,23 @@
             send(msg);
         });
 
+        socket.on('toClient', function(data) {
+            writeMessage(data.msg,data.position);
+        });
+
+        socket.on('checkToClient', function(data) {
+            writeMessage(data.msg,data.position,data.check);
+        });
+
         function send(msg){
-            socket.emit('toServer', {message : msg, room:room, id:name});
+            if(ongame==true && msg.substring(1,0)=="#"){
+                socket.emit('toServerCheck', {message : msg.substring(1), room:room, id:name});
+            }else{
+                socket.emit('toServer', {message : msg, room:room, id:name});
+            }
         }
 
         socket.on('startToClient',function(data){
-            alert("asdad");
            ongame = data.state;
         });
 
@@ -218,6 +225,23 @@
                 canvasActive();
             });
         });
+
+        function writeMessage(msg, pos, check) {
+            var bubble_id="#bubble"+ pos;
+            $(bubble_id).html("");
+            $(bubble_id).html(msg);
+            if(check == false){
+                $(bubble_id).css('color','red');
+            }
+            else{
+                $(bubble_id).css('color','#4dc71f');
+            }
+            $(bubble_id).css('font-weight','bold');
+            $(bubble_id).css('display','block');
+            setTimeout(function(){
+                $(bubble_id).css('display','none');
+            }, 3000);
+        }
 
         function writeMessage(msg, pos) {
             var bubble_id="#bubble"+ pos;

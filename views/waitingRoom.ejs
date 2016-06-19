@@ -150,9 +150,13 @@
             alert("방이 꽉차서 들어갈 수 없습니다.");
         }else{
             socket.emit("enterroom",{roomnum:roomnum,current:current,max:max});
-            console.log("되니?");
             socket.on("roomenter",function(data){
-                window.location.href = '/gameRoom' + data.roomnum;
+                if(data.result == false){
+                    alert("게임중이라 들어갈 수 없습니다.");
+                }
+                else{
+                    window.location.href = '/gameRoom' + data.roomnum;
+                }
             });
         }
     }
