@@ -204,16 +204,14 @@
         }
 
         $('#btn-start').click(function(){
-            if(ongame == false){
-                ongame = true;
-                $(this).attr('disabled', 'disabled');
-                socket.emit('hostCheck',{room:room});
-                socket.on('host2',function (data) {
-                    answerVisible(data.word);
-                    toolsVisible();
-                    canvasActive();
-                });
-            }
+            ongame = true;
+            $(this).attr('disabled', 'disabled');
+            socket.emit('hostCheck',{room:room});
+            socket.on('host2',function (data) {
+                answerVisible(data.word);
+                toolsVisible();
+                canvasActive();
+            });
         });
 
         function writeMessage(msg, pos) {
