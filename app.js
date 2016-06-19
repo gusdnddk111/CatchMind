@@ -133,7 +133,7 @@ io.sockets.on('connection', function (socket) {
         break;
       }
     }
-    console.log(data.room+"번방의 클라이언트들에게 "+ position+"이 : " + data.message + " 이 정답일까요?");
+    console.log(room+"번방의 클라이언트들에게 "+ position+"이 : " + data.message + " 이 정답일까요?");
     if(rooms[room].answer == data.message){
       console.log("정답!");
       io.sockets.in(room).emit('checkToClient',{check:true,msg:data.message,position:position});
@@ -154,7 +154,7 @@ io.sockets.on('connection', function (socket) {
       }
     }
     else{
-      io.sockets.in(data.room).emit('checkToClient',{check:false,msg:data.message,position:position});
+      io.sockets.in(room).emit('checkToClient',{check:false,msg:data.message,position:position});
     }
   });
 

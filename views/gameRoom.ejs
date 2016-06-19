@@ -240,6 +240,7 @@
             }
             else{
                 $(bubble_id).css('color','#4dc71f');
+                canvasInit();
             }
             $(bubble_id).css('font-weight','bold');
             $(bubble_id).css('display','block');
@@ -252,6 +253,8 @@
             var bubble_id="#bubble"+ pos;
             $(bubble_id).html("");
             $(bubble_id).html(msg);
+            $(bubble_id).css('color','black');
+            $(bubble_id).css('font-weight','normal');
             $(bubble_id).css('display','block');
             setTimeout(function(){
                 $(bubble_id).css('display','none');
