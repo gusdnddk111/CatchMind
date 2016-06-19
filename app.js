@@ -142,12 +142,12 @@ io.sockets.on('connection', function (socket) {
       socket.emit('gameEndToClient',{state:false});
       for(var i=0;i<rooms[room].users.length;i++){
         if(rooms[room].users[i].host == true){
-          rooms[room].users[i].host == false;
+          rooms[room].users[i].host = false;
         }
       }
       for(var i=0;i<rooms[room].users.length;i++){
         if(socket.id == rooms[room].users[i].socketid){
-          rooms[room].users[i].host == true;
+          rooms[room].users[i].host = true;
           io.sockets.connected[rooms[room].users[i].socketid].emit('host1',{hostpos:rooms[room].users[i].position, len:rooms[room].users.length});
         }
       }
