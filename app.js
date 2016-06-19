@@ -202,7 +202,7 @@ io.sockets.on('connection', function (socket) {
     io.sockets.connected[socket.id].emit('roomenter',{roomnum:roomnum});
   });
   
-  socket.on('startToServer',function(){
+  socket.on('startToServer',function(data){
     if(rooms[data.room].roominfo.ongame==false){
       rooms[data.room].roominfo.ongame=true;
       io.sockets.in(data.room).emit('startToClient',{state:true});
