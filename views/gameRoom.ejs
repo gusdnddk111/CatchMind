@@ -214,6 +214,9 @@
         socket.on('startToClient',function(data){
            ongame = data.state;
         });
+        socket.on('gameEndToClient',function(data){
+            ongame = data.state;
+        });
 
         $('#btn-start').click(function(){
             $(this).attr('disabled', 'disabled');
