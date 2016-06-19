@@ -35,23 +35,7 @@ $(document).ready(function() {
 	}
 
 
-	function canvasInit() {
-		context = document.getElementById("canvas").getContext("2d");
-
-		//선스타일 "둥글게''
-		context.lineCap = "round";
-		//위에 스타일 저장
-		context.save();
-
-		//캔버스초기화
-		//캔버스 색(흰색으로 덮어버림)
-		context.fillStyle = '#fff';
-		//캔버스크기
-		context.fillRect(0, 0, context.canvas.width, context.canvas.height);
-
-		//선스타일 "둥글게" 다시 불러옴
-		context.restore();
-	}
+	
 
 // create a function to pass touch events and coordinates to drawer
 	function draw(event) {
