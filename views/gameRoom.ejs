@@ -198,10 +198,12 @@
         });
 
         socket.on('toClient', function(data) {
+            alert("그냥말");
             writeMessage(data.msg,data.position);
         });
 
         socket.on('checkToClient', function(data) {
+            alert("정답말하기");
             writeAnswer(data.msg,data.position,data.check);
         });
 
@@ -234,7 +236,6 @@
         function writeAnswer(msg, pos, check) {
             var bubble_id="#bubble"+ pos;
             $(bubble_id).html("");
-            $(bubble_id).html(msg);
             if(check == false){
                 $(bubble_id).css('color','red');
             }
@@ -243,6 +244,7 @@
                 canvasInit();
             }
             $(bubble_id).css('font-weight','bold');
+            $(bubble_id).html(msg);
             $(bubble_id).css('display','block');
             setTimeout(function(){
                 $(bubble_id).css('display','none');
@@ -252,9 +254,9 @@
         function writeMessage(msg, pos) {
             var bubble_id="#bubble"+ pos;
             $(bubble_id).html("");
-            $(bubble_id).html(msg);
             $(bubble_id).css('color','black');
             $(bubble_id).css('font-weight','normal');
+            $(bubble_id).html(msg);
             $(bubble_id).css('display','block');
             setTimeout(function(){
                 $(bubble_id).css('display','none');
