@@ -147,7 +147,7 @@ io.sockets.on('connection', function (socket) {
       console.log("정답!");
       rooms[room].answer="";
       rooms[room].roominfo.ongame=false;
-      socket.emit('gameEndToClient',{state:false});
+      io.sockets.in(room).emit('gameEndToClient', {state:false});
       for(var i=0;i<rooms[room].users.length;i++){
         if(rooms[room].users[i].host == true){
           rooms[room].users[i].host = false;
