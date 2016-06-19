@@ -286,7 +286,7 @@
     }
 
     function canvasActive(){
-        $('#canvas').removeAttr('disabled');
+        $('#canvas').css('pointer-events','');
     }
     function canvasInactive(){
         $('#canvas').css('pointer-events', 'none');
