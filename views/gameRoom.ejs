@@ -240,7 +240,9 @@
             }
             else{
                 $(bubble_id).css('color','green');
+                $('#pic-circle').css('position','block');
                 setTimeout(function(){
+                    $('#pic-circle').css('position','none');
                     canvasInit();
                 }, 2000);
             }
