@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a0e07de-56ec-4e90-b74f-1a9591ef8420" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/gameRoomStyle.css" afterPath="$PROJECT_DIR$/public/stylesheets/gameRoomStyle.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/gameRoom.ejs" afterPath="$PROJECT_DIR$/views/gameRoom.ejs" />
     </list>
     <ignored path="CatchMind.iws" />
@@ -69,8 +69,8 @@
       <file leaf-file-name="gameRoom.ejs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/gameRoom.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="239" column="17" selection-start-line="239" selection-start-column="17" selection-end-line="239" selection-end-column="17" />
+            <state relative-caret-position="180">
+              <caret line="80" column="33" selection-start-line="80" selection-start-column="33" selection-end-line="80" selection-end-column="33" />
               <folding>
                 <element signature="n#style#0;n#li#11;n#ul#0;n#div#0;n#div#2;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -78,11 +78,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gameRoomStyle.css" pinned="false" current-in-tab="false">
+      <file leaf-file-name="gameRoomStyle.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/stylesheets/gameRoomStyle.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="202">
-              <caret line="346" column="0" selection-start-line="346" selection-start-column="0" selection-end-line="346" selection-end-column="0" />
+            <state relative-caret-position="240">
+              <caret line="296" column="11" selection-start-line="296" selection-start-column="11" selection-end-line="296" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -98,7 +98,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="316">
@@ -176,10 +176,10 @@
         <option value="$PROJECT_DIR$/routes/title.js" />
         <option value="$PROJECT_DIR$/public/javascripts/member_db.js" />
         <option value="$PROJECT_DIR$/views/waitingRoom.ejs" />
-        <option value="$PROJECT_DIR$/public/stylesheets/gameRoomStyle.css" />
         <option value="$PROJECT_DIR$/public/javascripts/canvas.js" />
-        <option value="$PROJECT_DIR$/views/gameRoom.ejs" />
         <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/views/gameRoom.ejs" />
+        <option value="$PROJECT_DIR$/public/stylesheets/gameRoomStyle.css" />
       </list>
     </option>
   </component>
@@ -410,12 +410,12 @@
       <workItem from="1465490995484" duration="5407000" />
       <workItem from="1465526874181" duration="37965000" />
       <workItem from="1465743360287" duration="13426000" />
-      <workItem from="1466181353678" duration="36674000" />
+      <workItem from="1466181353678" duration="37188000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="283877000" />
+    <option name="totallyTimeSpent" value="284391000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1294" height="814" extended-state="0" />
@@ -714,14 +714,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/stylesheets/gameRoomStyle.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="346" column="0" selection-start-line="346" selection-start-column="0" selection-end-line="346" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/javascripts/canvas.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -730,20 +722,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="153" column="96" selection-start-line="153" selection-start-column="96" selection-end-line="153" selection-end-column="96" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/views/gameRoom.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="239" column="17" selection-start-line="239" selection-start-column="17" selection-end-line="239" selection-end-column="17" />
+        <state relative-caret-position="180">
+          <caret line="80" column="33" selection-start-line="80" selection-start-column="33" selection-end-line="80" selection-end-column="33" />
           <folding>
             <element signature="n#style#0;n#li#11;n#ul#0;n#div#0;n#div#2;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
+    <entry file="file://$PROJECT_DIR$/public/stylesheets/gameRoomStyle.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="153" column="96" selection-start-line="153" selection-start-column="96" selection-end-line="153" selection-end-column="96" />
+        <state relative-caret-position="240">
+          <caret line="296" column="11" selection-start-line="296" selection-start-column="11" selection-end-line="296" selection-end-column="11" />
           <folding />
         </state>
       </provider>
