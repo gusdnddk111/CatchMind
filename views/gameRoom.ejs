@@ -200,7 +200,7 @@
         });
 
         socket.on('checkToClient', function(data) {
-            writeMessage(data.msg,data.position,data.check);
+            writeAnswer(data.msg,data.position,data.check);
         });
 
         function send(msg){
@@ -226,7 +226,7 @@
             });
         });
 
-        function writeMessage(msg, pos, check) {
+        function writeAnswer(msg, pos, check) {
             var bubble_id="#bubble"+ pos;
             $(bubble_id).html("");
             $(bubble_id).html(msg);
