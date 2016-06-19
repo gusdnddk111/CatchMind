@@ -141,6 +141,8 @@
             initUser();
             startBtnInvisible();
             canvasInactive();
+            toolsInvisible();
+            answerInvisible();
             for (var i = 0; i < users.length; i++) {
                 createUser(users[i].position, users[i].id);
             }
@@ -324,6 +326,10 @@
     function answerVisible(word){
         $('#word').css("display","block");
         $('#word').html(word);
+    }
+    function answerInvisible(){
+        $('#word').css("display","none");
+        $('#word').html("");
     }
 
 
