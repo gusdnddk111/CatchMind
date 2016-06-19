@@ -36,11 +36,11 @@
       <file leaf-file-name="waitingRoom.ejs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/waitingRoom.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="146" column="54" selection-start-line="146" selection-start-column="54" selection-end-line="146" selection-end-column="54" />
+            <state relative-caret-position="214">
+              <caret line="140" column="48" selection-start-line="140" selection-start-column="48" selection-end-line="140" selection-end-column="48" />
               <folding>
-                <marker date="1466328478679" expanded="true" signature="5247:5316" ph="..." />
-                <marker date="1466328478679" expanded="true" signature="5586:5615" ph="..." />
+                <marker date="1466328621363" expanded="true" signature="5247:5316" ph="..." />
+                <marker date="1466328621363" expanded="true" signature="5586:5628" ph="..." />
               </folding>
             </state>
           </provider>
@@ -410,12 +410,12 @@
       <workItem from="1465490995484" duration="5407000" />
       <workItem from="1465526874181" duration="37965000" />
       <workItem from="1465743360287" duration="13426000" />
-      <workItem from="1466181353678" duration="41719000" />
+      <workItem from="1466181353678" duration="41860000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="288922000" />
+    <option name="totallyTimeSpent" value="289063000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1294" height="814" extended-state="0" />
@@ -740,11 +740,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/waitingRoom.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="146" column="54" selection-start-line="146" selection-start-column="54" selection-end-line="146" selection-end-column="54" />
+        <state relative-caret-position="214">
+          <caret line="140" column="48" selection-start-line="140" selection-start-column="48" selection-end-line="140" selection-end-column="48" />
           <folding>
-            <marker date="1466328478679" expanded="true" signature="5247:5316" ph="..." />
-            <marker date="1466328478679" expanded="true" signature="5586:5615" ph="..." />
+            <marker date="1466328621363" expanded="true" signature="5247:5316" ph="..." />
+            <marker date="1466328621363" expanded="true" signature="5586:5628" ph="..." />
           </folding>
         </state>
       </provider>
