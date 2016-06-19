@@ -136,7 +136,6 @@ io.sockets.on('connection', function (socket) {
     console.log(room+"번방의 클라이언트들에게 "+ position+"이 : " + data.message + " 이 정답일까요?");
     if(rooms[room].answer == data.message){
       console.log("정답!");
-      io.sockets.in(room).emit('checkToClient',{check:true,msg:data.message,position:position});
       rooms[room].answer="";
       rooms[room].roominfo.ongame=false;
       socket.emit('gameEndToClient',{state:false});
@@ -152,6 +151,7 @@ io.sockets.on('connection', function (socket) {
           io.sockets.connected[rooms[room].users[i].socketid].emit('host1',{len:rooms[room].users.length});
         }
       }
+      io.sockets.in(room).emit('checkToClient',{check:true,msg:data.message,position:position});
     }
     else{
       io.sockets.in(room).emit('checkToClient',{check:false,msg:data.message,position:position});

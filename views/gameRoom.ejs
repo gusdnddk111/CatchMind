@@ -238,8 +238,10 @@
                 $(bubble_id).css('color','red');
             }
             else{
-                $(bubble_id).css('color','#4dc71f');
-                canvasInit();
+                $(bubble_id).css('color','green');
+                setTimeout(function(){
+                    canvasInit();
+                }, 2000);
             }
             $(bubble_id).css('font-weight','bold');
             $(bubble_id).html(msg);
