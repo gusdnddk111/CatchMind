@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a0e07de-56ec-4e90-b74f-1a9591ef8420" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/canvas.js" afterPath="$PROJECT_DIR$/public/javascripts/canvas.js" />
     </list>
     <ignored path="CatchMind.iws" />
@@ -59,7 +60,7 @@
         <entry file="file://$PROJECT_DIR$/public/javascripts/canvas.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
-              <caret line="95" column="116" selection-start-line="95" selection-start-column="116" selection-end-line="95" selection-end-column="116" />
+              <caret line="95" column="41" selection-start-line="95" selection-start-column="41" selection-end-line="95" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -409,12 +410,12 @@
       <workItem from="1465490995484" duration="5407000" />
       <workItem from="1465526874181" duration="37965000" />
       <workItem from="1465743360287" duration="13426000" />
-      <workItem from="1466181353678" duration="39427000" />
+      <workItem from="1466181353678" duration="39751000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="286630000" />
+    <option name="totallyTimeSpent" value="286954000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1294" height="814" extended-state="0" />
@@ -742,7 +743,7 @@
     <entry file="file://$PROJECT_DIR$/public/javascripts/canvas.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
-          <caret line="95" column="116" selection-start-line="95" selection-start-column="116" selection-end-line="95" selection-end-column="116" />
+          <caret line="95" column="41" selection-start-line="95" selection-start-column="41" selection-end-line="95" selection-end-column="41" />
           <folding />
         </state>
       </provider>

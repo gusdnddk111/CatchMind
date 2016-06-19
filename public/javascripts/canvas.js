@@ -93,6 +93,7 @@ $(document).ready(function() {
 				draw = 1;
 				saveActions();
 
+				console.log(e.clientX+", "+e.clientY);
 				console.log(e.pageX+", "+e.pageY+", "+ $('#canvas').offset().left + ", " +$('#canvas').offset().left);
 				cntxt.beginPath();
 				cntxt.moveTo(e.pageX - $('#canvas').offset().left , e.pageY - $('#canvas').offset().top );
