@@ -203,9 +203,13 @@
             socket.emit('toServer', {message : msg, room:room, id:name});
         }
 
+        socket.on('startToClient',function(data){
+           ongame = data.state;
+        });
+
         $('#btn-start').click(function(){
-            ongame = true;
             $(this).attr('disabled', 'disabled');
+            socket.emit('startToServer',{room:room});
             socket.emit('hostCheck',{room:room});
             socket.on('host2',function (data) {
                 answerVisible(data.word);

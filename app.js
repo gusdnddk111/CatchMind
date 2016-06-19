@@ -189,7 +189,7 @@ io.sockets.on('connection', function (socket) {
     rooms[roomnum] = new Object();
     rooms[roomnum].users=[];
     rooms[roomnum].count=0;
-    rooms[roomnum].roominfo={roomnum:roomnum, roomname:data.roomname, currentcount:1, maxcount:data.maxcount};
+    rooms[roomnum].roominfo={roomnum:roomnum, roomname:data.roomname, currentcount:1, maxcount:data.maxcount, ongame:false};
     console.log(rooms);
     io.sockets.in('waitingRoom').emit("room",{rooms:rooms});
     io.sockets.connected[socket.id].emit('roomenter',{roomnum:roomnum});
@@ -200,6 +200,13 @@ io.sockets.on('connection', function (socket) {
     console.log("현재인원수: " + rooms[data.roomnum].roominfo.currentcount);
     io.sockets.in('waitingRoom').emit("room",{rooms:rooms});
     io.sockets.connected[socket.id].emit('roomenter',{roomnum:roomnum});
+  });
+  
+  socket.on('startToServer',function(){
+    if(rooms[data.room].roominfo.ongame==false){
+      rooms[data.room].roominfo.ongame=true;
+      io.sockets.in(data.room).emit('startToClient',{state:true});
+    }
   });
   
   socket.on('hostCheck',function(data){
