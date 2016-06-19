@@ -135,11 +135,12 @@ io.sockets.on('connection', function (socket) {
       }
     }
     for(var i=0;i<rooms[room].users.length;i++){
-      if(rooms[room].users[i].socketid == socket.id){
-        if(rooms[room].users[i].host ==true){
-          io.sockets.in(data.room).emit('toClient',{msg:data.message,position:position});
+      if(rooms[room].users[i].socketid == socket.id) {
+        if (rooms[room].users[i].host == true) {
+          io.sockets.in(data.room).emit('toClient', {msg: data.message, position: position});
           break;
         }
+      }
     }
     console.log(room+"번방의 클라이언트들에게 "+ position+"이 : " + data.message + " 이 정답일까요?");
     if(rooms[room].answer == data.message){
