@@ -35,8 +35,6 @@ $(document).ready(function() {
 	}
 
 
-	
-
 // create a function to pass touch events and coordinates to drawer
 	function draw(event) {
 
@@ -93,22 +91,20 @@ $(document).ready(function() {
 		$('#canvas').mousedown(function (e) {
 			if (e.button == 0) {
 				draw = 1;
-				saveActions();
+				saveActions(e.pageX+", "+e.pageY+", "+ $('#canvas').offset().left + ", " +$('#canvas').offset().left);
 
+				console.log();
 				cntxt.beginPath();
 				cntxt.moveTo(e.pageX - $('#canvas').offset().left , e.pageY - $('#canvas').offset().top );
 			}
-
 			else {
 				draw = 0;
 			}
 		})
-
 			.mouseup(function (e) {
 				if (e.button != 0) {
 					draw = 1;
 				}
-
 				else {
 					draw = 0;
 					cntxt.lineTo(e.pageX - $('#canvas').offset().left + 1, e.pageY - $('#canvas').offset().top +1);
