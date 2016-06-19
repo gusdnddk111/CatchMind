@@ -127,14 +127,15 @@ io.sockets.on('connection', function (socket) {
   socket.on('toServerCheck', function (data) {
     var room = data.room;
     var position=0;
-    for(var i=0;i<rooms[data.room].users.length;i++){
-      if(rooms[data.room].users[i].id == data.id){
+    for(var i=0;i<rooms[room].users.length;i++){
+      if(rooms[room].users[i].id == data.id){
         position=i+1;
         break;
       }
     }
     console.log(data.room+"번방의 클라이언트들에게 "+ position+"이 : " + data.message + " 이 정답일까요?");
     if(rooms[room].answer == data.message){
+      console.log("정답!");
       io.sockets.in(room).emit('checkToClient',{check:true,msg:data.message,position:position});
       rooms[room].answer="";
       rooms[room].roominfo.ongame=false;
