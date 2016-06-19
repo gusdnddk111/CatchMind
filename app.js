@@ -148,10 +148,10 @@ io.sockets.on('connection', function (socket) {
       for(var i=0;i<rooms[room].users.length;i++){
         if(socket.id == rooms[room].users[i].socketid){
           rooms[room].users[i].host = true;
-          io.sockets.connected[rooms[room].users[i].socketid].emit('host1',{hostpos:rooms[room].users[i].position, len:rooms[room].users.length});
+          io.sockets.in(room).emit('userlist', {users: rooms[room].users});
+          io.sockets.connected[rooms[room].users[i].socketid].emit('host1',{len:rooms[room].users.length});
         }
       }
-      io.sockets.in(room).emit('userlist', {users: rooms[room].users});
     }
     else{
       io.sockets.in(data.room).emit('checkToClient',{check:false,msg:data.message,position:position});
