@@ -127,43 +127,42 @@ io.sockets.on('connection', function (socket) {
   socket.on('toServerCheck', function (data) {
 
     var room = data.room;
+    var position=0;
+    for(var i=0;i<rooms[room].users.length;i++){
+      if(rooms[room].users[i].id == data.id){
+        position=i+1;
+        break;
+      }
+    }
     for(var i=0;i<rooms[room].users.length;i++){
       if(rooms[room].users[i].socketid == socket.id){
         if(rooms[room].users[i].host ==true){
           io.sockets.in(data.room).emit('toClient',{msg:data.message,position:position});
+          break;
         }
-      }else{
-        var position=0;
-        for(var i=0;i<rooms[room].users.length;i++){
-          if(rooms[room].users[i].id == data.id){
-            position=i+1;
-            break;
-          }
-        }
-        console.log(room+"번방의 클라이언트들에게 "+ position+"이 : " + data.message + " 이 정답일까요?");
-        if(rooms[room].answer == data.message){
-          console.log("정답!");
-          rooms[room].answer="";
-          rooms[room].roominfo.ongame=false;
-          socket.emit('gameEndToClient',{state:false});
-          for(var i=0;i<rooms[room].users.length;i++){
-            if(rooms[room].users[i].host == true){
-              rooms[room].users[i].host = false;
-            }
-          }
-          for(var i=0;i<rooms[room].users.length;i++){
-            if(socket.id == rooms[room].users[i].socketid){
-              rooms[room].users[i].host = true;
-              io.sockets.in(room).emit('userlist', {users: rooms[room].users});
-              io.sockets.connected[rooms[room].users[i].socketid].emit('host1',{len:rooms[room].users.length});
-            }
-          }
-          io.sockets.in(room).emit('checkToClient',{check:true,msg:data.message,position:position});
-        }
-        else{
-          io.sockets.in(room).emit('checkToClient',{check:false,msg:data.message,position:position});
+    }
+    console.log(room+"번방의 클라이언트들에게 "+ position+"이 : " + data.message + " 이 정답일까요?");
+    if(rooms[room].answer == data.message){
+      console.log("정답!");
+      rooms[room].answer="";
+      rooms[room].roominfo.ongame=false;
+      socket.emit('gameEndToClient',{state:false});
+      for(var i=0;i<rooms[room].users.length;i++){
+        if(rooms[room].users[i].host == true){
+          rooms[room].users[i].host = false;
         }
       }
+      for(var i=0;i<rooms[room].users.length;i++){
+        if(socket.id == rooms[room].users[i].socketid){
+          rooms[room].users[i].host = true;
+          io.sockets.in(room).emit('userlist', {users: rooms[room].users});
+          io.sockets.connected[rooms[room].users[i].socketid].emit('host1',{len:rooms[room].users.length});
+        }
+      }
+      io.sockets.in(room).emit('checkToClient',{check:true,msg:data.message,position:position});
+    }
+    else{
+      io.sockets.in(room).emit('checkToClient',{check:false,msg:data.message,position:position});
     }
   });
 
