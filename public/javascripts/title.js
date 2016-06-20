@@ -1,4 +1,6 @@
 $(document).ready(function(){
+
+    //회원가입 완료 버튼을 눌렀을 때
     $('#btn-submit').click(function(){
 
         var input_data={};
@@ -41,8 +43,8 @@ $(document).ready(function(){
     });
     
     
+    //로그인할때
     $('.login_form').submit(function(){
-       
         
         var input_data={};
         if($("#container-login input[name='id']").val()==""){

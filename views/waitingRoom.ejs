@@ -95,8 +95,10 @@
 
     $(document).ready(function() {
 
+        //대기실 입장
         socket.emit('joinWaitingRoom');
 
+        //룸리스트 띄워주기
         socket.on("room",function(data){
             $('#rooms').html("");
             var state ="";
@@ -111,6 +113,7 @@
             }
         });
 
+        //방만들기 버튼 클릭시
         $('#btn-room-create2').click(function(){
             if($('#roomnameInput').val()==""){
                 alert("방제목을 입력해주세요.");
@@ -126,6 +129,7 @@
             }
         });
 
+        //방 리스트를 받아 실제로 방을 보여주는 함수
         function createRoom(state,roomnum, roomname, currentUser, maxCount){
 
             var div1 = $('<div class = "room"></div>');
@@ -152,6 +156,7 @@
 
     });
 
+    //방에 입장을 눌렀을 때
     function room_enter(roomnum,current,max){
         if(current == max){
             alert("방이 꽉차서 들어갈 수 없습니다.");

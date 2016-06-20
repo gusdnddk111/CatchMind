@@ -75,15 +75,18 @@ var io = require('socket.io').listen(server);
 var roomnum=0;
 var rooms = {};
 
+//소켓연결
 io.sockets.on('connection', function (socket) {
   console.log("socket connected!");
 
+  //대기실 입장시
   socket.on("joinWaitingRoom",function(){
     console.log("inWaitingRoom");
     socket.join('waitingRoom');
     io.sockets.in('waitingRoom').emit("room",{rooms:rooms});
   });
 
+  //방입장시
   socket.on('joinroom',function(data) {
     var room = data.room;
     var name = data.userid;
@@ -103,6 +106,7 @@ io.sockets.on('connection', function (socket) {
     socket.join(room);
     console.log(room+"번 방에 "+ rooms[room].users[rooms[room].users.length-1].id +" 입장");
     console.log(rooms[room].users);
+    //각 방의 userlist뿌려주기
     io.sockets.in(room).emit('userlist', {users: rooms[room].users});
 
     for(var i=0;i<rooms[room].users.length;i++){
@@ -111,7 +115,8 @@ io.sockets.on('connection', function (socket) {
       }
     }
   });
-  
+
+  //채팅 각 방마다의 클라이언트들에게 뿌려주기
   socket.on('toServer', function (data) {
     var position=0;
     for(var i=0;i<rooms[data.room].users.length;i++){
@@ -124,6 +129,7 @@ io.sockets.on('connection', function (socket) {
     io.sockets.in(data.room).emit('toClient',{msg:data.message,position:position});
   });
 
+  //정답 체크하고 각 방마다의 클라이언트들에게 뿌려주기
   socket.on('toServerCheck', function (data) {
 
     var room = data.room;
@@ -161,13 +167,16 @@ io.sockets.on('connection', function (socket) {
           io.sockets.connected[rooms[room].users[i].socketid].emit('host1',{len:rooms[room].users.length});
         }
       }
+      //정답
       io.sockets.in(room).emit('checkToClient',{check:true,msg:data.message,position:position});
     }
     else{
+      //오답
       io.sockets.in(room).emit('checkToClient',{check:false,msg:data.message,position:position});
     }
   });
 
+  //방을 나갈시에
   socket.on('disconnect1',function(data) {
     var room = data.room;
       for(var i=0; i<rooms[room].users.length;i++){
@@ -209,6 +218,7 @@ io.sockets.on('connection', function (socket) {
   });
 
 
+  //방만들기
   socket.on('createRoomToServer',function(data){
     roomnum++;
 
@@ -222,7 +232,8 @@ io.sockets.on('connection', function (socket) {
     io.sockets.in('waitingRoom').emit("room",{rooms:rooms});
     io.sockets.connected[socket.id].emit('roomenter',{roomnum:roomnum});
   });
-  
+
+  //방에 입장
   socket.on('enterroom',function(data){
     if(rooms[data.roomnum].roominfo.ongame==true){
       io.sockets.connected[socket.id].emit('roomenter',{result:false});
@@ -235,6 +246,7 @@ io.sockets.on('connection', function (socket) {
     }
   });
   
+  //게임 시작
   socket.on('startToServer',function(data){
     if(rooms[data.room].roominfo.ongame==false){
       rooms[data.room].roominfo.ongame=true;
@@ -243,6 +255,7 @@ io.sockets.on('connection', function (socket) {
     }
   });
   
+  //방장이 누군지 체크
   socket.on('hostCheck',function(data){
     member_db.word(data,function (result) {
       for (var i = 0; i < rooms[data.room].users.length; i++) {

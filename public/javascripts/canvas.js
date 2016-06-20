@@ -34,8 +34,7 @@ $(document).ready(function() {
 		}
 	}
 
-
-// create a function to pass touch events and coordinates to drawer
+	
 	function draw(event) {
 
 		//coors객체 -> x,y좌표의 정보를 가지고 있음
@@ -44,8 +43,6 @@ $(document).ready(function() {
 			y: event.targetTouches[0].pageY
 		};
 
-		// pass the coordinates to the appropriate handler
-		//??
 		drawer[event.type](coors);
 	}
 

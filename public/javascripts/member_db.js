@@ -16,6 +16,7 @@ var connection = mysql.createConnection({
 
 var self = module.exports = {
 
+    //db에서 정답불러오기
     word:function(req,callback){
         console.log("Select Word");
         var result = Math.floor(Math.random() * 10) + 1;
@@ -30,6 +31,7 @@ var self = module.exports = {
         });
     },
 
+    //db에서 아이디가 맞는지 체크
     check:function(id, callback){
         console.log("check");
         connection.query('SELECT * FROM info', [], function (error, _rows, _cols) {
@@ -48,6 +50,7 @@ var self = module.exports = {
         });
     },
 
+    //회원가입 시 중복체크
     overlap: function (id, callback) {
 
         connection.query('SELECT NAME FROM info', [], function (error, _rows, _cols) {
@@ -66,8 +69,8 @@ var self = module.exports = {
         });
     },
 
+    //회원가입
     add: function (member, callback) {
-
         self.overlap(member.id,function(result){
             if(result){
                 console.log("member_db:ID is already exist");
@@ -94,6 +97,7 @@ var self = module.exports = {
         });
     },
 
+    //로그인
     login: function (req,callback) {
         self.check(req.id, function(member){
             if(member){
@@ -111,12 +115,13 @@ var self = module.exports = {
         });
     },
 
+    //로그아웃(아직 안씀)
     logout: function (req,callback) {
         var update_query_str = "UPDATE info SET LOGON='off' WHERE NAME='" + member.NAME+"'";
         connection.query(update_query_str);
         callback("LogOut");
     },
-
+    //현재 유저 수 카운트(아직안씀)
     LoginCount: function (req,callback){
         connection.query('SELECT * FROM info WHERE LOGON="on"', [], function (error, _rows, _cols) {
             if (error) {

@@ -134,8 +134,10 @@
 
         var socket = io.connect(serverURL);
 
+        //방에 입장시
         socket.emit('joinroom',{room:room,userid: name});
 
+        //유저리스트 출력
         socket.on('userlist',function(data) {
             var users = data.users;
             console.log(users.length);
@@ -158,10 +160,13 @@
                 }
             }
         });
+
+        //방장에게만 시작버튼 출력
         socket.on("host1",function (data) {
             startBtnVisible(data.len);
         });
 
+        //서버에서 뿌린 캔버스정보 받아서 캔버스에 표시
         socket.on('toClientImg',function(data){
             var img = new Image();
             $(img).load(function () {
@@ -171,10 +176,12 @@
             img.src = data.imgData;
         });
 
+        //방 나가기
         socket.on('roomexit',function(data){
             window.location.href = '/waitingRoom';
         });
 
+        //방 나가기 버튼 눌렀을 때
         $('#btn_exit').click(function(){
 
             if(ongame == false) {
@@ -198,10 +205,12 @@
             send(msg);
         });
 
+        //채팅 시각화
         socket.on('toClient', function(data) {
             writeMessage(data.msg,data.position);
         });
 
+        //정답 시각화
         socket.on('checkToClient', function(data) {
             writeAnswer(data.msg,data.position,data.check);
         });
@@ -214,13 +223,16 @@
             }
         }
 
+        //각 클라이언트들에게 게임이 시작되었음을 알림
         socket.on('startToClient',function(data){
            ongame = data.state;
         });
+        //각 클라이언트들에게 게임이 종료되었음을 알림
         socket.on('gameEndToClient',function(data){
             ongame = data.state;
         });
 
+        //시작버튼을 눌렀을 때
         $('#btn-start').click(function(){
             $(this).attr('disabled', 'disabled');
             socket.emit('startToServer',{room:room});
@@ -232,6 +244,7 @@
             });
         });
 
+        //정답표시함수
         function writeAnswer(msg, pos, check) {
             var bubble_id="#bubble"+ pos;
             $(bubble_id).html("");
@@ -254,6 +267,7 @@
             }, 3000);
         }
 
+        //채팅표시함수
         function writeMessage(msg, pos) {
             var bubble_id="#bubble"+ pos;
             $(bubble_id).html("");
@@ -266,6 +280,7 @@
             }, 3000);
         }
 
+        //유저가 방에 들어올 때 유저표시
         function createUser(position, id){
             var user = "#user"+position;
 
@@ -279,6 +294,7 @@
             $(user).append(div1).append(div2);
         }
 
+        //유저리스트 초기화
         function initUser(){
             for(var i=1;i<9;i++){
                 var bubbleId = "bubble" + i;
@@ -293,6 +309,7 @@
 
     });
 
+    //tool보이게(방장권한)
     function toolsVisible(){
         $("#colors li").css("display","inline-block");
         $("#colors li.selected").css("display","inline-block");
@@ -302,6 +319,7 @@
         $("#btn-reset").css("display","inline-block");
     }
 
+    //툴 안보이게(방장이 아닌 클라이언트)
     function toolsInvisible(){
         $("#colors li").css("display","none");
         $("#colors li.selected").css("display","none");
@@ -311,9 +329,12 @@
         $("#btn-reset").css("display","none");
     }
 
+    //시작버튼 보이게(방장권한)
     function startBtnVisible(){
         $("#btn-start").css("display","block");
     }
+
+    //시작버튼 안보이게(방장이 아닌 클라이언트)
     function startBtnInvisible(len){
         $("#btn-start").css("display","none");
         if(len > 2){
@@ -324,21 +345,26 @@
         }
     }
 
+    //캔버스 활성화(방장권한)
     function canvasActive(){
         $('#canvas').css('pointer-events','');
     }
+    //캔버스 비활성화(방장이 아닌 클라이언트)
     function canvasInactive(){
         $('#canvas').css('pointer-events', 'none');
     }
+    //정답표시(방장권한)
     function answerVisible(word){
         $('#word').css("display","block");
         $('#word').html(word);
     }
+    //정답 안보이게(방장이 아닌 클라이언트)
     function answerInvisible(){
         $('#word').css("display","none");
         $('#word').html("");
     }
 
+    //캔버스 초기화
     function canvasInit() {
         context = document.getElementById("canvas").getContext("2d");
 
